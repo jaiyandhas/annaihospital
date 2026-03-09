@@ -341,7 +341,7 @@ export const renderAppointment = async (container) => {
     let optionsHtml = '<option value="" disabled selected>Select Doctor</option>';
     doctors.forEach(d => {
       const isPreselected = d.id === preselectedDocId ? 'selected' : '';
-      optionsHtml += \`<option value="\${d.id}" \${isPreselected}>\${d.name} (\${d.department})</option>\`;
+      optionsHtml += `<option value="${d.id}" ${isPreselected}>${d.name} (${d.department})</option>`;
     });
 
     docSelect.innerHTML = optionsHtml;
@@ -365,19 +365,19 @@ export const renderAppointment = async (container) => {
   function triggerDoctorSelection(docId) {
     selectedDoctorId = docId;
     const docData = doctors.find(d => d.id === docId);
-    if(docData) {
+    if (docData) {
       noDocProfile.style.display = 'none';
       selDocProfile.style.display = 'flex';
-      
+
       document.getElementById('sdName').innerText = docData.name;
       document.getElementById('sdDept').innerText = docData.department;
       document.getElementById('sdQual').innerText = docData.qualifications || 'Expert Specialist';
       document.getElementById('sdExp').innerText = (docData.experience_years ? docData.experience_years + ' Yrs Exp' : 'Experienced');
-      
+
       // Generate Dates
       generateDateSlider();
       dateTimeSection.style.display = 'flex';
-      
+
       // Reset form section
       bookingFormSection.style.display = 'none';
       selectedDate = null;
@@ -391,39 +391,39 @@ export const renderAppointment = async (container) => {
     const today = new Date();
     let firstValidDate = null;
     let firstValidItem = null;
-    
+
     // Generate next 14 days
-    for(let i = 0; i < 14; i++) {
-       const d = new Date(today);
-       d.setDate(today.getDate() + i);
-       
-       const dayStr = d.toLocaleDateString('en-US', { weekday: 'short' });
-       const numStr = d.getDate();
-       const monthStr = d.toLocaleDateString('en-US', { month: 'short' });
-       const fullDateStr = d.toISOString().split('T')[0];
-       
-       const dItem = document.createElement('div');
-       dItem.className = 'date-item';
-       dItem.dataset.date = fullDateStr;
-       dItem.innerHTML = \`<span class="date-num">\${numStr}</span><span class="date-day">\${dayStr} <br> \${monthStr}</span>\`;
-       
-       if(i === 0) {
-         firstValidDate = fullDateStr;
-         firstValidItem = dItem;
-         dItem.classList.add('active');
-       }
-       
-       dItem.addEventListener('click', function() {
-          document.querySelectorAll('.date-item').forEach(el => el.classList.remove('active'));
-          this.classList.add('active');
-          triggerDateSelection(fullDateStr, this);
-       });
-       
-       dateSlider.appendChild(dItem);
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+
+      const dayStr = d.toLocaleDateString('en-US', { weekday: 'short' });
+      const numStr = d.getDate();
+      const monthStr = d.toLocaleDateString('en-US', { month: 'short' });
+      const fullDateStr = d.toISOString().split('T')[0];
+
+      const dItem = document.createElement('div');
+      dItem.className = 'date-item';
+      dItem.dataset.date = fullDateStr;
+      dItem.innerHTML = `<span class="date-num">${numStr}</span><span class="date-day">${dayStr} <br> ${monthStr}</span>`;
+
+      if (i === 0) {
+        firstValidDate = fullDateStr;
+        firstValidItem = dItem;
+        dItem.classList.add('active');
+      }
+
+      dItem.addEventListener('click', function () {
+        document.querySelectorAll('.date-item').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+        triggerDateSelection(fullDateStr, this);
+      });
+
+      dateSlider.appendChild(dItem);
     }
 
-    if(firstValidDate) {
-        triggerDateSelection(firstValidDate, firstValidItem);
+    if (firstValidDate) {
+      triggerDateSelection(firstValidDate, firstValidItem);
     }
   }
 
@@ -431,16 +431,16 @@ export const renderAppointment = async (container) => {
   function triggerDateSelection(dateStr, element) {
     selectedDate = dateStr;
     const formattedDate = new Date(dateStr).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
-    
+
     // Generate dummy slots
     const morningSlots = ['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM'];
     const afternoonSlots = ['12:00 PM', '12:30 PM', '01:00 PM', '02:00 PM', '03:00 PM', '03:30 PM'];
     const eveningSlots = ['04:00 PM', '05:00 PM', '06:00 PM', '07:00 PM'];
-    
+
     renderSlots('morningSlots', morningSlots);
     renderSlots('afternoonSlots', afternoonSlots);
     renderSlots('eveningSlots', eveningSlots);
-    
+
     // Hide form if date changes
     bookingFormSection.style.display = 'none';
     selectedTime = null;
@@ -449,25 +449,25 @@ export const renderAppointment = async (container) => {
   function renderSlots(containerId, times) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
-    
-    if(!times || times.length === 0) {
-        container.innerHTML = '<span style="color: var(--text-light); font-size: 0.9rem;">No slots</span>';
-        return;
+
+    if (!times || times.length === 0) {
+      container.innerHTML = '<span style="color: var(--text-light); font-size: 0.9rem;">No slots</span>';
+      return;
     }
 
     times.forEach((t, i) => {
       const btn = document.createElement('button');
       btn.className = 'time-slot';
       btn.innerText = t;
-      
+
       // Randomly disable some slots to make it look realistic
-      if(Math.random() > 0.7) {
+      if (Math.random() > 0.7) {
         btn.disabled = true;
       } else {
-        btn.addEventListener('click', function() {
-           document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('active'));
-           this.classList.add('active');
-           triggerSlotSelection(t);
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('active'));
+          this.classList.add('active');
+          triggerSlotSelection(t);
         });
       }
       container.appendChild(btn);
@@ -477,10 +477,10 @@ export const renderAppointment = async (container) => {
   // 5. Slot Selection
   function triggerSlotSelection(timeStr) {
     selectedTime = timeStr;
-    
+
     const formattedDate = new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
-    summaryDateTime.innerText = \`\${selectedDate} \${formattedDate} (\${selectedTime})\`;
-    
+    summaryDateTime.innerText = `${selectedDate} ${formattedDate} (${selectedTime})`;
+
     // Show booking form
     bookingFormSection.style.display = 'block';
     bookingFormSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -490,40 +490,40 @@ export const renderAppointment = async (container) => {
   const toggles = document.querySelectorAll('.reg-toggle');
   const newSec = document.getElementById('newPatientSection');
   const existSec = document.getElementById('existingPatientSection');
-  
+
   toggles.forEach(t => {
     t.addEventListener('click', (e) => {
-       e.preventDefault();
-       toggles.forEach(btn => {
-         btn.classList.remove('btn-active');
-         btn.style.background = 'white';
-         btn.style.color = 'var(--text-primary)';
-         btn.querySelector('i').style.opacity = '0';
-       });
-       
-       t.classList.add('btn-active');
-       t.style.background = '#0ea5e9';
-       t.style.color = 'white';
-       t.querySelector('i').style.opacity = '1';
-       
-       if(t.dataset.type === 'new') {
-         newSec.style.display = 'block';
-         existSec.style.display = 'none';
-         
-         // Set required fields for new
-         document.getElementById('patName').setAttribute('required', 'true');
-         document.getElementById('patAge').setAttribute('required', 'true');
-         document.getElementById('patPhone').setAttribute('required', 'true');
-         
-       } else {
-         newSec.style.display = 'none';
-         existSec.style.display = 'block';
-         
-         // Remove required from hidden fields
-         document.getElementById('patName').removeAttribute('required');
-         document.getElementById('patAge').removeAttribute('required');
-         document.getElementById('patPhone').removeAttribute('required');
-       }
+      e.preventDefault();
+      toggles.forEach(btn => {
+        btn.classList.remove('btn-active');
+        btn.style.background = 'white';
+        btn.style.color = 'var(--text-primary)';
+        btn.querySelector('i').style.opacity = '0';
+      });
+
+      t.classList.add('btn-active');
+      t.style.background = '#0ea5e9';
+      t.style.color = 'white';
+      t.querySelector('i').style.opacity = '1';
+
+      if (t.dataset.type === 'new') {
+        newSec.style.display = 'block';
+        existSec.style.display = 'none';
+
+        // Set required fields for new
+        document.getElementById('patName').setAttribute('required', 'true');
+        document.getElementById('patAge').setAttribute('required', 'true');
+        document.getElementById('patPhone').setAttribute('required', 'true');
+
+      } else {
+        newSec.style.display = 'none';
+        existSec.style.display = 'block';
+
+        // Remove required from hidden fields
+        document.getElementById('patName').removeAttribute('required');
+        document.getElementById('patAge').removeAttribute('required');
+        document.getElementById('patPhone').removeAttribute('required');
+      }
     });
   });
 
@@ -531,74 +531,74 @@ export const renderAppointment = async (container) => {
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const submitBtn = document.getElementById('submitBtn');
       const errBox = document.getElementById('formError');
       errBox.style.display = 'none';
 
-      if(!selectedDoctorId || !selectedDate || !selectedTime) {
-         errBox.innerText = "Please select Doctor, Date, and Time slots above.";
-         errBox.style.display = 'block';
-         return;
+      if (!selectedDoctorId || !selectedDate || !selectedTime) {
+        errBox.innerText = "Please select Doctor, Date, and Time slots above.";
+        errBox.style.display = 'block';
+        return;
       }
 
       const originalBtnText = submitBtn.innerHTML;
-      submitBtn.innerHTML = \`<i class='bx bx-loader-alt bx-spin'></i> Processing...\`;
+      submitBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> Processing...`;
       submitBtn.disabled = true;
 
       try {
         const isNew = document.querySelector('.reg-toggle.btn-active').dataset.type === 'new';
-        
+
         let patientId = null;
         let finalPatName = '';
         let finalPatEmail = '';
         let finalPatPhone = '';
         let finalPatAge = 0;
 
-        if(isNew) {
-           finalPatName = document.getElementById('patName').value;
-           finalPatEmail = document.getElementById('patEmail').value || \`noemail_\${Date.now()}@example.com\`;
-           finalPatPhone = document.getElementById('patPhone').value;
-           finalPatAge = parseInt(document.getElementById('patAge').value);
-           const genderInput = document.querySelector('input[name="patGender"]:checked');
-           const gender = genderInput ? genderInput.value : null;
+        if (isNew) {
+          finalPatName = document.getElementById('patName').value;
+          finalPatEmail = document.getElementById('patEmail').value || `noemail_${Date.now()}@example.com`;
+          finalPatPhone = document.getElementById('patPhone').value;
+          finalPatAge = parseInt(document.getElementById('patAge').value);
+          const genderInput = document.querySelector('input[name="patGender"]:checked');
+          const gender = genderInput ? genderInput.value : null;
 
-           // Check if patient exists by email
-           const { data: existingPat, error: searchErr } = await supabase.from('patients').select('id').eq('email', finalPatEmail).maybeSingle();
-           if (searchErr) throw searchErr;
+          // Check if patient exists by email
+          const { data: existingPat, error: searchErr } = await supabase.from('patients').select('id').eq('email', finalPatEmail).maybeSingle();
+          if (searchErr) throw searchErr;
 
-           if (existingPat) {
-             patientId = existingPat.id;
-           } else {
-             // Create new patient
-             const { data: newPat, error: insertErr } = await supabase.from('patients').insert([{
-               full_name: document.getElementById('patSalutation').value + ' ' + finalPatName,
-               email: finalPatEmail,
-               phone_number: finalPatPhone,
-               age: finalPatAge,
-               gender: gender
-             }]).select('id').single();
+          if (existingPat) {
+            patientId = existingPat.id;
+          } else {
+            // Create new patient
+            const { data: newPat, error: insertErr } = await supabase.from('patients').insert([{
+              full_name: document.getElementById('patSalutation').value + ' ' + finalPatName,
+              email: finalPatEmail,
+              phone_number: finalPatPhone,
+              age: finalPatAge,
+              gender: gender
+            }]).select('id').single();
 
-             if (insertErr) throw insertErr;
-             patientId = newPat.id;
-           }
+            if (insertErr) throw insertErr;
+            patientId = newPat.id;
+          }
         } else {
-           // Mock fetching existing patient
-           finalPatName = 'Existing Patient (Demo)';
-           finalPatPhone = document.getElementById('regPhone').value || '1234567890';
-           // Since patient profiles aren't fully auth'd, we mock saving to the first patient or insert a dummy for the demo
-           const { data: existingPat, error: searchErr } = await supabase.from('patients').select('id, email, age').limit(1).single();
-           if(existingPat) {
-             patientId = existingPat.id;
-             finalPatEmail = existingPat.email;
-             finalPatAge = existingPat.age;
-           } else {
-              throw new Error("No existing records found. Please register as new.");
-           }
+          // Mock fetching existing patient
+          finalPatName = 'Existing Patient (Demo)';
+          finalPatPhone = document.getElementById('regPhone').value || '1234567890';
+          // Since patient profiles aren't fully auth'd, we mock saving to the first patient or insert a dummy for the demo
+          const { data: existingPat, error: searchErr } = await supabase.from('patients').select('id, email, age').limit(1).single();
+          if (existingPat) {
+            patientId = existingPat.id;
+            finalPatEmail = existingPat.email;
+            finalPatAge = existingPat.age;
+          } else {
+            throw new Error("No existing records found. Please register as new.");
+          }
         }
 
         const aptDocData = doctors.find(d => d.id === selectedDoctorId);
-        
+
         // Create Appointment
         const { data: aptData, error: aptErr } = await supabase.from('appointments').insert([{
           patient_id: patientId,
@@ -614,7 +614,7 @@ export const renderAppointment = async (container) => {
         // Success UI Update
         document.getElementById('dateTimeSection').style.display = 'none';
         document.querySelector('.doctor-header').style.display = 'none';
-        
+
         const successMsg = document.getElementById('successMsg');
         successMsg.style.display = 'block';
 
@@ -632,14 +632,14 @@ export const renderAppointment = async (container) => {
             },
             body: JSON.stringify({
               access_key: "944aa710-b3ad-4420-83d6-c368805954e0",
-              subject: \`New Mega Appointment: \${finalPatName}\`,
+              subject: `New Mega Appointment: ${finalPatName}`,
               from_name: "Annai Hospital System",
-              message: \`New appointment booked!
-Patient: \${finalPatName}
-Phone: \${finalPatPhone}
-Doctor: \${aptDocData.name}
-Date: \${selectedDate}
-Time: \${selectedTime}\`
+              message: `New appointment booked!
+Patient: ${finalPatName}
+Phone: ${finalPatPhone}
+Doctor: ${aptDocData.name}
+Date: ${selectedDate}
+Time: ${selectedTime}`
             })
           });
         } catch (emailErr) {
@@ -650,7 +650,7 @@ Time: \${selectedTime}\`
 
       } catch (err) {
         console.error("Booking error:", err);
-        errBox.innerText = \`Failed to book appointment: \${err.message || 'Unknown error. Please try again later.'}\`;
+        errBox.innerText = `Failed to book appointment: ${err.message || 'Unknown error. Please try again later.'}`;
         errBox.style.display = 'block';
       } finally {
         submitBtn.innerHTML = originalBtnText;
