@@ -13,10 +13,10 @@ export const renderNavbar = () => {
 
       <!-- Center: Navigation Links -->
       <ul class="nav-links desktop-links">
-        <li><a href="/" data-link class="nav-item">DISCOVER ANNAI <i class='bx bx-chevron-down'></i></a></li>
-        <li><a href="/departments" data-link class="nav-item">MEDICAL SERVICES <i class='bx bx-chevron-down'></i></a></li>
+        <li><a href="/" data-link class="nav-item">DISCOVER ANNAI</a></li>
+        <li><a href="/departments" data-link class="nav-item">SPECIALTIES</a></li>
         <li class="nav-dropdown">
-          <a href="#" class="nav-item">SERVICES & FEATURES <i class='bx bx-chevron-down'></i></a>
+          <a href="#" class="nav-item">FOR PATIENTS <i class='bx bx-chevron-down'></i></a>
           <ul class="dropdown-menu shadow-md">
             <li><a href="/appointment" data-link><i class='bx bx-calendar-check'></i> Book Appointment</a></li>
             <li><a href="/doctors" data-link><i class='bx bx-user-pin'></i> Our Doctors</a></li>
@@ -47,10 +47,10 @@ export const renderNavbar = () => {
 
       <!-- Mobile Menu -->
       <ul class="mobile-menu nav-links" style="margin: 0;">
-        <li><a href="/" data-link class="nav-item">DISCOVER ANNAI <i class='bx bx-chevron-down'></i></a></li>
-        <li><a href="/departments" data-link class="nav-item">MEDICAL SERVICES <i class='bx bx-chevron-down'></i></a></li>
+        <li><a href="/" data-link class="nav-item">DISCOVER ANNAI</a></li>
+        <li><a href="/departments" data-link class="nav-item">SPECIALTIES</a></li>
         <li class="mobile-dropdown-parent">
-          <div class="nav-item" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">SERVICES & FEATURES <i class='bx bx-chevron-down dropdown-arrow'></i></div>
+          <div class="nav-item" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">FOR PATIENTS <i class='bx bx-chevron-down dropdown-arrow'></i></div>
           <ul class="mobile-dropdown-menu">
             <li><a href="/appointment" data-link><i class='bx bx-calendar-check'></i> Book Appointment</a></li>
             <li><a href="/doctors" data-link><i class='bx bx-user-pin'></i> Our Doctors</a></li>
