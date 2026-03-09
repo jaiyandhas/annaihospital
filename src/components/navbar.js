@@ -16,22 +16,31 @@ export const renderNavbar = () => {
       <ul class="nav-links desktop-links">
         <li><a href="/" data-link class="nav-item">DISCOVER ANNAI <i class='bx bx-chevron-down'></i></a></li>
         <li><a href="/departments" data-link class="nav-item">MEDICAL SERVICES <i class='bx bx-chevron-down'></i></a></li>
-        <li><a href="/health-tools" data-link class="nav-item">HEALTH TOOLS <i class='bx bx-chevron-down'></i></a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-item">SERVICES & FEATURES <i class='bx bx-chevron-down'></i></a>
+          <ul class="dropdown-menu shadow-md">
+            <li><a href="/appointment" data-link><i class='bx bx-calendar-check'></i> Book Appointment</a></li>
+            <li><a href="/doctors" data-link><i class='bx bx-user-pin'></i> Our Doctors</a></li>
+            <li><a href="/telemedicine" data-link><i class='bx bx-video'></i> Telemedicine</a></li>
+            <li><a href="/bed-availability" data-link><i class='bx bx-bed'></i> Bed Availability</a></li>
+            <li><a href="/patient-portal" data-link><i class='bx bx-laptop'></i> Patient Portal</a></li>
+            <li><a href="/lab-reports" data-link><i class='bx bx-test-tube'></i> Lab Reports</a></li>
+            <li><a href="/health-tools" data-link><i class='bx bx-heart'></i> Health Tools</a></li>
+          </ul>
+        </li>
       </ul>
 
       <!-- Right: Actions -->
-      <div class="nav-actions">
-        <a href="/contact" class="action-icon phone-icon" aria-label="Call Us" data-link>
-          <i class='bx bxs-phone'></i>
+      <div class="nav-actions" style="gap: 1rem;">
+        <a href="/contact" class="premium-icon-btn phone-btn" aria-label="Call Us" data-link title="Contact Us">
+          <div class="icon-pulse"></div>
+          <i class='bx bxs-phone-call'></i>
         </a>
-        <button class="action-icon search-icon" aria-label="Search">
-          <i class='bx bx-search'></i>
+        <button class="premium-icon-btn search-btn" aria-label="Search" title="Search">
+          <i class='bx bx-search-alt-2'></i>
         </button>
-        <div class="emergency-icon-wrapper">
-          <i class='bx bxs-bell-ring'></i>
-          <span>1066</span>
-        </div>
-        <button class="action-btn lang-btn" style="border-radius: 20px; padding: 0.3rem 0.8rem; font-size: 0.8rem; background: transparent; border: 1px solid rgba(255,255,255,0.8); color: white;">EN <i class='bx bx-chevron-down'></i></button>
+        <div class="divider" style="width: 1px; height: 24px; background: rgba(255,255,255,0.3); margin: 0 0.5rem;"></div>
+        <button class="action-btn lang-btn premium-lang-btn">EN <i class='bx bx-chevron-down'></i></button>
 
         <button class="menu-toggle" aria-label="Toggle menu">
           <i class='bx bx-menu'></i>
@@ -42,7 +51,18 @@ export const renderNavbar = () => {
       <ul class="mobile-menu nav-links" style="margin: 0;">
         <li><a href="/" data-link class="nav-item">DISCOVER ANNAI <i class='bx bx-chevron-down'></i></a></li>
         <li><a href="/departments" data-link class="nav-item">MEDICAL SERVICES <i class='bx bx-chevron-down'></i></a></li>
-        <li><a href="/health-tools" data-link class="nav-item">HEALTH TOOLS <i class='bx bx-chevron-down'></i></a></li>
+        <li class="mobile-dropdown-parent">
+          <div class="nav-item" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">SERVICES & FEATURES <i class='bx bx-chevron-down dropdown-arrow'></i></div>
+          <ul class="mobile-dropdown-menu">
+            <li><a href="/appointment" data-link><i class='bx bx-calendar-check'></i> Book Appointment</a></li>
+            <li><a href="/doctors" data-link><i class='bx bx-user-pin'></i> Our Doctors</a></li>
+            <li><a href="/telemedicine" data-link><i class='bx bx-video'></i> Telemedicine</a></li>
+            <li><a href="/bed-availability" data-link><i class='bx bx-bed'></i> Bed Availability</a></li>
+            <li><a href="/patient-portal" data-link><i class='bx bx-laptop'></i> Patient Portal</a></li>
+            <li><a href="/lab-reports" data-link><i class='bx bx-test-tube'></i> Lab Reports</a></li>
+            <li><a href="/health-tools" data-link><i class='bx bx-heart'></i> Health Tools</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </header>
@@ -59,6 +79,16 @@ export const renderNavbar = () => {
   menuToggle.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
   });
+
+  // Mobile Accordion Logic
+  const mobileDropdownParent = document.querySelector('.mobile-dropdown-parent .nav-item');
+  if (mobileDropdownParent) {
+    mobileDropdownParent.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const parentLi = mobileDropdownParent.closest('.mobile-dropdown-parent');
+      parentLi.classList.toggle('active');
+    });
+  }
 
   // Add scroll effect
   window.addEventListener('scroll', () => {
