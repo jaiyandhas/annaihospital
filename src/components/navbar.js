@@ -32,9 +32,7 @@ export const renderNavbar = () => {
       <!-- Right: Actions -->
       <div class="nav-actions" style="gap: 1rem;">
         <a href="/contact" class="premium-icon-btn phone-btn" aria-label="Call Us" data-link title="Contact Us">
-          <div class="phone-pulse-ring"></div>
-          <div class="phone-pulse-ring-inner"></div>
-          <i class='bx bxs-phone' style="color: var(--accent);"></i>
+          <i class='bx bxs-phone'></i>
         </a>
         <button class="premium-icon-btn search-btn" aria-label="Search" title="Search">
           <i class='bx bx-search'></i>

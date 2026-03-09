@@ -734,50 +734,15 @@ ul.mobile-menu {
 }
 
 .phone-btn {
-    background: #f1f5f9;
-    color: var(--primary-dark) !important;
-    position: relative;
+    background: var(--accent) !important;
+    color: white !important;
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
 }
 
 .navbar-container.is-home:not(.scrolled) .phone-btn {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    background: var(--accent) !important;
     color: white !important;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-}
-
-.phone-pulse-ring {
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: 2px solid rgba(249, 115, 22, 0.2);
-    animation: pulseOrangerRing 2s infinite;
-}
-
-.navbar-container.is-home:not(.scrolled) .phone-pulse-ring {
-    border: 2px solid rgba(255, 255, 255, 0.4);
-}
-
-.phone-pulse-ring-inner {
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    border: 2px solid rgba(249, 115, 22, 0.4);
-}
-
-.navbar-container.is-home:not(.scrolled) .phone-pulse-ring-inner {
-    border: 2px solid rgba(255, 255, 255, 0.6);
-}
-
-@keyframes pulseOrangerRing {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(1.2);
-        opacity: 0;
-    }
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
 .premium-lang-btn {
