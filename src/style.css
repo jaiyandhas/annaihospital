@@ -339,16 +339,16 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background: transparent;
+    background: white;
     transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .navbar-container.scrolled {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     box-shadow: var(--shadow-md);
-    border-bottom: 1px solid transparent;
 }
 
 .navbar {
@@ -386,20 +386,12 @@ img {
 .logo-text h2 {
     margin: 0;
     line-height: 1;
-    transition: color 0.3s ease;
+    color: var(--primary-dark);
 }
 
 .logo-text span {
     font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.navbar-container.scrolled .logo-text h2 {
-    color: var(--primary-dark) !important;
-}
-
-.navbar-container.scrolled .logo-text span {
-    color: var(--accent-dark) !important;
+    color: var(--accent-dark);
 }
 
 .desktop-links {
@@ -427,7 +419,7 @@ ul.mobile-menu {
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: 0.5px;
-    color: white;
+    color: var(--primary-dark);
     position: relative;
     padding: 0.5rem 0;
     display: flex;
@@ -437,19 +429,11 @@ ul.mobile-menu {
     transition: color 0.3s ease;
 }
 
-.navbar-container.scrolled .nav-item {
-    color: var(--primary-dark);
-}
-
 .nav-item i {
     font-size: 1.1rem;
 }
 
 .nav-item:hover {
-    color: var(--accent-light);
-}
-
-.navbar-container.scrolled .nav-item:hover {
     color: var(--accent);
 }
 
@@ -511,9 +495,9 @@ ul.mobile-menu {
 }
 
 .action-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    color: white;
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--primary-dark);
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
     font-weight: 600;
@@ -525,16 +509,7 @@ ul.mobile-menu {
     transition: all 0.3s;
 }
 
-.navbar-container.scrolled .action-btn {
-    border-color: var(--border-color);
-    color: var(--primary-dark);
-}
-
 .action-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.navbar-container.scrolled .action-btn:hover {
     background: var(--bg-color-alt);
 }
 
@@ -547,12 +522,8 @@ ul.mobile-menu {
     background: none;
     border: none;
     font-size: 2rem;
-    color: white;
-    cursor: pointer;
-}
-
-.navbar-container.scrolled .menu-toggle {
     color: var(--primary-dark);
+    cursor: pointer;
 }
 
 @media (max-width: 1250px) {
@@ -697,62 +668,59 @@ ul.mobile-menu {
     color: var(--accent);
 }
 
-/* Premium Icons */
+/* Premium Icons specific to new design */
 .premium-icon-btn {
     position: relative;
-    width: 42px;
-    height: 42px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border: none;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    backdrop-filter: blur(4px);
-}
-
-.navbar-container.scrolled .premium-icon-btn {
-    background: var(--bg-color-alt);
-    color: var(--primary);
+    background: #f1f5f9;
+    color: var(--primary-dark);
 }
 
 .premium-icon-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
+    background: #e2e8f0;
 }
 
 .phone-btn {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-    color: white !important;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: #f1f5f9;
+    color: var(--primary-dark) !important;
+    position: relative;
 }
 
-.navbar-container.scrolled .phone-btn {
-    box-shadow: 0 4px 14px 0 rgba(234, 88, 12, 0.3);
+.phone-pulse-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(249, 115, 22, 0.2);
+    animation: pulseOrangerRing 2s infinite;
 }
 
-.icon-pulse {
+.phone-pulse-ring-inner {
     position: absolute;
     inset: -4px;
     border-radius: 50%;
-    border: 2px solid var(--accent);
-    animation: pulseIcon 2s infinite;
-    opacity: 0;
+    border: 2px solid rgba(249, 115, 22, 0.4);
 }
 
-@keyframes pulseIcon {
+@keyframes pulseOrangerRing {
     0% {
         transform: scale(1);
-        opacity: 0.8;
+        opacity: 1;
     }
 
     100% {
-        transform: scale(1.5);
+        transform: scale(1.2);
         opacity: 0;
     }
 }
@@ -760,9 +728,23 @@ ul.mobile-menu {
 .premium-lang-btn {
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.5px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: white;
+    border: 1px solid var(--border-color);
+    color: var(--primary-dark);
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
 }
+
+.premium-lang-btn:hover {
+    background: var(--bg-color-alt);
+}
+
 
 /* Mobile Accordion Dropdown */
 .mobile-dropdown-parent.active .dropdown-arrow {

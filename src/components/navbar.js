@@ -2,13 +2,12 @@ export const renderNavbar = () => {
   const navbarHTML = `
   <header class="navbar-container">
     <nav class="container navbar">
-    <nav class="container navbar">
       <!-- Left: Logo -->
       <a href="/" class="logo" data-link>
-        <img src="/logo.png" alt="Annai Hospital" style="width: 50px; height: 50px; object-fit: contain; filter: brightness(0) invert(1);" onerror="this.outerHTML='<div class=\\'logo-icon\\' style=\\'background: var(--accent);\\'><i class=\\'bx bx-child\\'></i></div>'"/>
+        <img src="/logo.png" alt="Annai Hospital" style="width: 45px; height: 45px; object-fit: contain;" onerror="this.outerHTML='<div class=\\'logo-icon\\' style=\\'background: var(--accent);\\'><i class=\\'bx bx-child\\'></i></div>'"/>
         <div class="logo-text" style="text-align: left; display: flex; flex-direction: column; justify-content: center;">
-          <h2 style="color: white; font-size: 1.4rem; letter-spacing: 0.5px; line-height: 1; transition: color 0.3s;" class="dynamic-text">Annai</h2>
-          <span style="color: white; font-size: 0.7rem; letter-spacing: 2px; transition: color 0.3s;" class="dynamic-sub">HOSPITAL</span>
+          <h2 style="color: var(--primary-dark); font-size: 1.4rem; letter-spacing: 0.5px; line-height: 1;" class="dynamic-text">Annai</h2>
+          <span style="color: var(--accent); font-size: 0.6rem; letter-spacing: 2px; font-weight: 700;" class="dynamic-sub">HOSPITAL</span>
         </div>
       </a>
 
@@ -33,13 +32,14 @@ export const renderNavbar = () => {
       <!-- Right: Actions -->
       <div class="nav-actions" style="gap: 1rem;">
         <a href="/contact" class="premium-icon-btn phone-btn" aria-label="Call Us" data-link title="Contact Us">
-          <div class="icon-pulse"></div>
-          <i class='bx bxs-phone-call'></i>
+          <div class="phone-pulse-ring"></div>
+          <div class="phone-pulse-ring-inner"></div>
+          <i class='bx bxs-phone' style="color: var(--accent);"></i>
         </a>
         <button class="premium-icon-btn search-btn" aria-label="Search" title="Search">
-          <i class='bx bx-search-alt-2'></i>
+          <i class='bx bx-search'></i>
         </button>
-        <div class="divider" style="width: 1px; height: 24px; background: rgba(255,255,255,0.3); margin: 0 0.5rem;"></div>
+        <div class="divider" style="width: 1px; height: 24px; background: var(--border-color); margin: 0 0.5rem;"></div>
         <button class="action-btn lang-btn premium-lang-btn">EN <i class='bx bx-chevron-down'></i></button>
 
         <button class="menu-toggle" aria-label="Toggle menu">
