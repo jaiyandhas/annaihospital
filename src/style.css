@@ -345,6 +345,12 @@ img {
     box-shadow: var(--shadow-sm);
 }
 
+.navbar-container.is-home:not(.scrolled) {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
 .navbar-container.scrolled {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
@@ -387,11 +393,18 @@ img {
     margin: 0;
     line-height: 1;
     color: var(--primary-dark);
+    transition: color 0.3s ease;
 }
 
 .logo-text span {
     font-weight: 600;
     color: var(--accent-dark);
+    transition: color 0.3s ease;
+}
+
+.navbar-container.is-home:not(.scrolled) .logo-text h2,
+.navbar-container.is-home:not(.scrolled) .logo-text span {
+    color: white;
 }
 
 .desktop-links {
@@ -429,12 +442,20 @@ ul.mobile-menu {
     transition: color 0.3s ease;
 }
 
+.navbar-container.is-home:not(.scrolled) .nav-item {
+    color: white;
+}
+
 .nav-item i {
     font-size: 1.1rem;
 }
 
 .nav-item:hover {
     color: var(--accent);
+}
+
+.navbar-container.is-home:not(.scrolled) .nav-item:hover {
+    color: var(--accent-light);
 }
 
 .nav-actions {
@@ -509,8 +530,18 @@ ul.mobile-menu {
     transition: all 0.3s;
 }
 
+.navbar-container.is-home:not(.scrolled) .action-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
 .action-btn:hover {
     background: var(--bg-color-alt);
+}
+
+.navbar-container.is-home:not(.scrolled) .action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .mobile-only {
@@ -524,6 +555,10 @@ ul.mobile-menu {
     font-size: 2rem;
     color: var(--primary-dark);
     cursor: pointer;
+}
+
+.navbar-container.is-home:not(.scrolled) .menu-toggle {
+    color: white;
 }
 
 @media (max-width: 1250px) {
@@ -686,6 +721,12 @@ ul.mobile-menu {
     color: var(--primary-dark);
 }
 
+.navbar-container.is-home:not(.scrolled) .premium-icon-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    backdrop-filter: blur(4px);
+}
+
 .premium-icon-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
@@ -698,6 +739,12 @@ ul.mobile-menu {
     position: relative;
 }
 
+.navbar-container.is-home:not(.scrolled) .phone-btn {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
 .phone-pulse-ring {
     position: absolute;
     inset: -8px;
@@ -706,11 +753,19 @@ ul.mobile-menu {
     animation: pulseOrangerRing 2s infinite;
 }
 
+.navbar-container.is-home:not(.scrolled) .phone-pulse-ring {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
 .phone-pulse-ring-inner {
     position: absolute;
     inset: -4px;
     border-radius: 50%;
     border: 2px solid rgba(249, 115, 22, 0.4);
+}
+
+.navbar-container.is-home:not(.scrolled) .phone-pulse-ring-inner {
+    border: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 @keyframes pulseOrangerRing {
@@ -739,10 +794,21 @@ ul.mobile-menu {
     align-items: center;
     gap: 0.25rem;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.navbar-container.is-home:not(.scrolled) .premium-lang-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
 }
 
 .premium-lang-btn:hover {
     background: var(--bg-color-alt);
+}
+
+.navbar-container.is-home:not(.scrolled) .premium-lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 

@@ -42,6 +42,15 @@ export const router = async () => {
     // Find the exact matching route or default to home if not found
     const viewFunction = routes[path] || routes['/'];
 
+    const header = document.querySelector('.navbar-container');
+    if (header) {
+        if (path === '/') {
+            header.classList.add('is-home');
+        } else {
+            header.classList.remove('is-home');
+        }
+    }
+
     const appContainer = document.getElementById('app');
     appContainer.innerHTML = ''; // Clear current view
 
