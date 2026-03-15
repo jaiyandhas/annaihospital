@@ -18,51 +18,10 @@
 </head>
 
 <body>
-  <!-- Navbar -->
-  <div id="navbar-placeholder"></div>
-
-  <!-- Main Content Area -->
-  <main id="app">
-    <!-- Views will be injected here -->
-  </main>
-
-  <!-- Footer -->
-  <div id="footer-placeholder"></div>
-
-  <!-- AI Chatbot Button Placeholder -->
-  <div id="chatbot-placeholder"></div>
-
-  <!-- Global Chatbot Widget -->
-  <div class="chatbot-widget" id="chatbotWidget">
-    <button class="chatbot-btn" id="chatbotBtn">
-      <i class='bx bx-message-rounded-dots'></i>
-    </button>
-    <div class="chatbot-window glass-card" id="chatbotWindow" style="display: none;">
-      <div class="chatbot-header"
-        style="background: var(--primary); color: white; padding: 1rem; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-weight: 600;"><i class='bx bx-bot'></i> Annai AI Helper</span>
-        <button id="closeChatBtn"
-          style="background: transparent; border: none; color: white; cursor: pointer; font-size: 1.25rem;"><i
-            class='bx bx-x'></i></button>
-      </div>
-      <div class="chatbot-messages" id="chatbotMsgs"
-        style="height: 300px; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; background: var(--bg-color-alt);">
-        <div
-          style="background: white; padding: 0.75rem; border-radius: var(--radius-md); max-width: 85%; align-self: flex-start; box-shadow: var(--shadow-sm); font-size: 0.9rem;">
-          Hi there! I am the Annai AI Assistant. How can I help you today?
-        </div>
-      </div>
-      <div class="chatbot-input"
-        style="padding: 1rem; border-top: 1px solid var(--border-color); background: white; border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); display: flex; gap: 0.5rem;">
-        <input type="text" id="chatInput" placeholder="Type a message..."
-          style="flex-grow: 1; border: 1px solid var(--border-color); border-radius: 4px; padding: 0.5rem; outline: none; font-family: inherit;">
-        <button id="sendChatBtn" class="btn btn-primary" style="padding: 0.5rem 1rem;"><i
-            class='bx bx-send'></i></button>
-      </div>
-    </div>
-  </div>
-
-  <script type="module" src="/src/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <!-- BoxIcons Script -->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </body>
 
 </html>
