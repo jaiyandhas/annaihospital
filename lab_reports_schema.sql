@@ -1,3 +1,9 @@
+-- ============================================================
+-- Lab Reports Schema
+-- Run this entire file in your Supabase SQL Editor.
+-- The ALTER TABLE at the bottom is safe to run on existing DBs.
+-- ============================================================
+
 -- Create Lab Reports Table
 CREATE TABLE IF NOT EXISTS public.lab_reports (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -17,3 +23,16 @@ CREATE POLICY "Allow public read access to lab reports" ON public.lab_reports FO
 CREATE POLICY "Allow public insert to lab_reports" ON public.lab_reports FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow public update to lab_reports" ON public.lab_reports FOR UPDATE USING (true);
 CREATE POLICY "Allow public delete to lab_reports" ON public.lab_reports FOR DELETE USING (true);
+
+-- ============================================================
+-- SAFE MIGRATION: Add date_uploaded column if not already present
+-- This handles databases created with the original schema.sql
+-- where only created_at existed. Run this in Supabase SQL Editor.
+-- ============================================================
+ALTER TABLE public.lab_reports
+  ADD COLUMN IF NOT EXISTS date_uploaded TIMESTAMP WITH TIME ZONE DEFAULT NOW();
+
+-- Backfill existing rows so date_uploaded matches created_at
+UPDATE public.lab_reports
+  SET date_uploaded = created_at
+  WHERE date_uploaded IS NULL;

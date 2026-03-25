@@ -50,12 +50,12 @@ const PatientPortal = () => {
           .order('prescribed_date', { ascending: false });
         setPrescriptions(prescs || []);
 
-        // Fetch lab reports
+        // Fetch lab reports (order by created_at as safe fallback — date_uploaded may not exist in all schema versions)
         const { data: labs } = await supabase
           .from('lab_reports')
           .select('*')
           .eq('patient_id', profile.id)
-          .order('date_uploaded', { ascending: false });
+          .order('created_at', { ascending: false });
         setLabReports(labs || []);
       }
     } catch (error) {
@@ -229,7 +229,7 @@ const PatientPortal = () => {
                       <div key={report.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.8rem', borderBottom: '1px solid var(--border-color)' }}>
                         <div>
                           <h4 style={{ fontSize: '0.95rem', color: 'var(--text-primary)', margin: 0 }}>{report.report_name}</h4>
-                          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{new Date(report.date_uploaded).toLocaleDateString()} | Ordered By: {report.ordered_by}</span>
+                          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{new Date(report.date_uploaded || report.created_at).toLocaleDateString()} | Ordered By: {report.ordered_by || '—'}</span>
                         </div>
                         <a href={report.file_url} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
                           <i className='bx bx-download'></i> View
