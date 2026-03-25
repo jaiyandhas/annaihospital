@@ -14,6 +14,11 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+// Health check route
+app.get('/', (req, res) => {
+  res.send('Annai Hospital API Backend is running securely! 🏥');
+});
+
 // Chatbot Endpoint
 app.post('/api/chat', async (req, res) => {
   try {
