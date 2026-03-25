@@ -64,7 +64,7 @@ const Home = () => {
                    </div>
                    <div>
                       <p style={{ margin: 0, fontWeight: 700, color: 'var(--primary-dark)', fontSize: '1.1rem' }}>Expert Care</p>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Trusted since 2007</p>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Over 15 Years of Service</p>
                    </div>
                 </div>
              </div>
@@ -79,7 +79,7 @@ const Home = () => {
             <span className="badge" style={{ background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', padding: '6px 16px', borderRadius: '20px', fontWeight: 700, fontSize: '0.85rem', marginBottom: '1.5rem', display: 'inline-block', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Legacy</span>
             <h2 className="section-title text-left" style={{ marginBottom: '1.5rem', fontSize: '2.8rem', lineHeight: 1.2, color: 'var(--primary-dark)' }}>Annai Hospital <br/><span style={{ color: 'var(--accent)', fontSize: '2rem', fontWeight: 600 }}>Uncompromising Care</span></h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              In 2007, we started as <strong>Annai Clinic</strong>—a small, dedicated outpatient facility in Tiruchengode. Over the years, thanks to the trust of our local community, we outgrew that smaller space and evolved into <strong>Annai Hospital</strong>, a fully-equipped medical center located near Valaraigate.
+              We started as <strong>Annai Clinic</strong>—a small, dedicated outpatient facility in Tiruchengode. Over the years, thanks to the trust of our local community, we outgrew that smaller space and evolved into <strong>Annai Hospital</strong>, a fully-equipped medical center located near Valaraigate.
             </p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
               Today, we provide 24x7 emergency services, round-the-clock labor and delivery assistance, and advanced NICU care. You will always be under the personal care of our founders, <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>, who have been proudly serving families in this region for over 15 years.
@@ -91,7 +91,7 @@ const Home = () => {
           
           <div className="about-image glass-card animate-fade-in" style={{ animationDelay: '0.4s', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(219, 234, 254, 0.5))', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
             <i className='bx bx-building-house' style={{ fontSize: '7rem', color: 'var(--primary)', marginBottom: '1.5rem', filter: 'drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2))' }}></i>
-            <h3 style={{ color: 'var(--primary-dark)', textAlign: 'center', fontSize: '1.5rem' }}>Serving Since 2007</h3>
+            <h3 style={{ color: 'var(--primary-dark)', textAlign: 'center', fontSize: '1.5rem' }}>Excellence in Care</h3>
             <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '0.5rem' }}>Trusted by families in Tiruchengode</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginTop: '2rem' }}>
                <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', minWidth: '100px' }}>
