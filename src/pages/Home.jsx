@@ -112,21 +112,21 @@ const Home = () => {
           <div className="stat-card glass-card">
             <div className="stat-icon"><i className='bx bx-group'></i></div>
             <div className="stat-info">
-              <h3 className="counter" data-target="15000">0</h3>
+              <h3 className="counter" data-target="500000">0</h3>
               <span>+ Patients Treated</span>
             </div>
           </div>
           <div className="stat-card glass-card">
             <div className="stat-icon"><i className='bx bx-user-plus'></i></div>
             <div className="stat-info">
-              <h3 className="counter" data-target="2">0</h3>
+              <h3 className="counter" data-target="8">0</h3>
               <span>Dedicated Specialists</span>
             </div>
           </div>
           <div className="stat-card glass-card">
             <div className="stat-icon"><i className='bx bx-award'></i></div>
             <div className="stat-info">
-              <h3 className="counter" data-target="15">0</h3>
+              <h3 className="counter" data-target="20">0</h3>
               <span>+ Years Experience</span>
             </div>
           </div>
@@ -204,30 +204,45 @@ const Home = () => {
           </div>
           
           <div className="grid-2 mt-2">
-            <div className="doctor-profile-card glass-card p-0">
-              <div className="doctor-img-placeholder" style={{ background: 'linear-gradient(135deg, var(--primary-light), var(--primary))' }}>
-                 <i className='bx bx-user' style={{ color: 'white', fontSize: '5rem' }}></i>
+            <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
+              <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
+                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <i className="bx bx-user" style={{ color: 'var(--text-light)', fontSize: '5rem' }}></i>
+                 </div>
               </div>
-              <div className="doctor-info p-2">
-                <h4>Dr. P. Saravana Raja</h4>
-                <p className="specialty">MBBS., DCH.</p>
-                <div className="doc-meta">
-                  <span><i className='bx bx-medal'></i> 15+ Years Exp.</span>
+              <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
+                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. P. Saravana Raja</h4>
+                <p className="specialty" style={{ marginBottom: '1rem', fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Paediatrician</p>
+                <div className="doc-meta" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS., DCH.
+                  </span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                     <i className="bx bx-medal" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> 20+ Years Exp.
+                  </span>
                 </div>
-                <button className="btn btn-primary w-100 mt-1" onClick={() => navigate('/appointment')}>Book Appointment</button>
+                <button className="btn btn-outline w-100 mt-auto" onClick={() => navigate('/appointment')}>Book Appointment</button>
               </div>
             </div>
-            <div className="doctor-profile-card glass-card p-0">
-              <div className="doctor-img-placeholder" style={{ background: 'linear-gradient(135deg, var(--accent-light), var(--accent))' }}>
-                 <i className='bx bx-user' style={{ color: 'white', fontSize: '5rem' }}></i>
+            
+            <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
+              <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
+                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <i className="bx bx-user" style={{ color: 'var(--text-light)', fontSize: '5rem' }}></i>
+                 </div>
               </div>
-              <div className="doctor-info p-2">
-                <h4>Dr. G. Jamuna Saravana Raja</h4>
-                <p className="specialty">MBBS., DGO.</p>
-                <div className="doc-meta">
-                  <span><i className='bx bx-medal'></i> 15+ Years Exp.</span>
+              <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
+                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. G. Jamuna Saravana Raja</h4>
+                <p className="specialty" style={{ marginBottom: '1rem', fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Obstetrician & Gynaecologist</p>
+                <div className="doc-meta" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS., DGO.
+                  </span>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                     <i className="bx bx-medal" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> 20+ Years Exp.
+                  </span>
                 </div>
-                <button className="btn btn-primary w-100 mt-1" onClick={() => navigate('/appointment')}>Book Appointment</button>
+                <button className="btn btn-outline w-100 mt-auto" onClick={() => navigate('/appointment')}>Book Appointment</button>
               </div>
             </div>
           </div>
@@ -242,14 +257,19 @@ const Home = () => {
           
           <div className="grid-3 mt-2">
             <Link to="/departments" className="dept-card glass-card">
+              <div className="dept-icon"><i className='bx bx-child'></i></div>
+              <h3>Pediatrics & Neonatology</h3>
+              <p>Specialized healthcare and medical treatments for infants, children, and adolescents.</p>
+            </Link>
+            <Link to="/departments" className="dept-card glass-card">
+              <div className="dept-icon"><i className='bx bx-female'></i></div>
+              <h3>Obstetrics & Gynecology</h3>
+              <p>Comprehensive maternal care, painless labor, and women's health services.</p>
+            </Link>
+            <Link to="/departments" className="dept-card glass-card">
               <div className="dept-icon"><i className='bx bx-heart'></i></div>
               <h3>Cardiology</h3>
               <p>Advanced heart care, surgeries, and diagnostics provided by leading cardiologists.</p>
-            </Link>
-            <Link to="/departments" className="dept-card glass-card">
-              <div className="dept-icon"><i className='bx bx-brain'></i></div>
-              <h3>Neurology</h3>
-              <p>Comprehensive treatment for brain, spinal cord, and nervous system disorders.</p>
             </Link>
             <Link to="/departments" className="dept-card glass-card">
               <div className="dept-icon"><i className='bx bx-bone'></i></div>
@@ -257,19 +277,14 @@ const Home = () => {
               <p>Expert care for bones, joints, ligaments, tendons, and muscles.</p>
             </Link>
             <Link to="/departments" className="dept-card glass-card">
-              <div className="dept-icon"><i className='bx bx-child'></i></div>
-              <h3>Pediatrics</h3>
-              <p>Specialized healthcare and medical treatments for infants, children, and adolescents.</p>
+              <div className="dept-icon"><i className='bx bx-plus-medical'></i></div>
+              <h3>General Surgery</h3>
+              <p>Advanced laparoscopic procedures and safe, effective surgical interventions.</p>
             </Link>
             <Link to="/departments" className="dept-card glass-card">
-              <div className="dept-icon"><i className='bx bx-scan'></i></div>
-              <h3>Radiology</h3>
-              <p>Advanced imaging technologies including MRI, CT scans, X-Rays, and Ultrasound.</p>
-            </Link>
-            <Link to="/departments" className="dept-card glass-card">
-              <div className="dept-icon"><i className='bx bx-first-aid'></i></div>
-              <h3>General Medicine</h3>
-              <p>Primary healthcare, prevention, diagnosis, and treatment of adult diseases.</p>
+              <div className="dept-icon"><i className='bx bx-wind'></i></div>
+              <h3>Pulmonology</h3>
+              <p>Expert diagnosis and treatment for respiratory and sleep disorders.</p>
             </Link>
           </div>
           <div className="text-center mt-3" style={{ textAlign: 'center' }}>
@@ -352,37 +367,31 @@ const Home = () => {
           </div>
           
           <div className="grid-3 mt-2">
-            <div className="blog-preview-card glass-card p-0">
-               <div className="blog-img-placeholder" style={{ background: 'linear-gradient(135deg, #fca5a5, #f87171)' }}>
-                 <i className='bx bx-heart'></i>
-               </div>
-               <div className="blog-content p-2">
-                 <span className="blog-category">Heart Health</span>
-                 <h4>5 Daily Habits for a Stronger Heart</h4>
-                 <p>Learn how simple lifestyle changes can significantly improve your cardiovascular health.</p>
-                 <Link to="/blog" className="read-more">Read More <i className='bx bx-right-arrow-alt'></i></Link>
+            <div className="blog-preview-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+               <img src="https://images.unsplash.com/photo-1505506874110-6a7a4f9aa118?auto=format&fit=crop&q=80&w=800" alt="Heart Health" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+               <div className="blog-content p-2" style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                 <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Heart Health</span>
+                 <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>5 Daily Habits for a Stronger Heart</h4>
+                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Learn how simple lifestyle changes can significantly improve your cardiovascular health.</p>
+                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
-            <div className="blog-preview-card glass-card p-0">
-               <div className="blog-img-placeholder" style={{ background: 'linear-gradient(135deg, #93c5fd, #60a5fa)' }}>
-                 <i className='bx bx-test-tube'></i>
-               </div>
-               <div className="blog-content p-2">
-                 <span className="blog-category">Prevention</span>
-                 <h4 style={{ marginTop: '5px', marginBottom: '10px' }}>Preventing Type 2 Diabetes</h4>
-                 <p style={{ marginBottom: '15px', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Early detection and manageable diet changes are key to stopping diabetes before it starts.</p>
-                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
+            <div className="blog-preview-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+               <img src="https://images.unsplash.com/photo-1494390248081-4e521a5940db?auto=format&fit=crop&q=80&w=800" alt="Diabetes Prevention" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+               <div className="blog-content p-2" style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                 <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Prevention</span>
+                 <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>Preventing Type 2 Diabetes</h4>
+                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Early detection and manageable diet changes are key to stopping diabetes before it starts.</p>
+                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
-            <div className="blog-preview-card glass-card p-0">
-               <div className="blog-img-placeholder" style={{ background: 'linear-gradient(135deg, #86efac, #4ade80)' }}>
-                 <i className='bx bx-run'></i>
-               </div>
-               <div className="blog-content p-2">
-                 <span className="blog-category">Lifestyle</span>
-                 <h4 style={{ marginTop: '5px', marginBottom: '10px' }}>Maintaining a Healthy Lifestyle</h4>
-                 <p style={{ marginBottom: '15px', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>Balancing work, diet, and exercise is essential for long-term health and wellness.</p>
-                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
+            <div className="blog-preview-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+               <img src="https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7?auto=format&fit=crop&q=80&w=800" alt="Healthy Lifestyle" style={{ width: '100%', height: '200px', objectFit: 'cover' }} />
+               <div className="blog-content p-2" style={{ padding: '1.5rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                 <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Lifestyle</span>
+                 <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>Maintaining a Healthy Lifestyle</h4>
+                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Balancing work, diet, and exercise is essential for long-term health and wellness.</p>
+                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
           </div>
