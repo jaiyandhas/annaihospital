@@ -93,14 +93,18 @@ const Home = () => {
             <i className='bx bx-building-house' style={{ fontSize: '7rem', color: 'var(--primary)', marginBottom: '1.5rem', filter: 'drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2))' }}></i>
             <h3 style={{ color: 'var(--primary-dark)', textAlign: 'center', fontSize: '1.5rem' }}>Serving Since 2007</h3>
             <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '0.5rem' }}>Trusted by families in Tiruchengode</p>
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginTop: '2rem' }}>
+               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', minWidth: '100px' }}>
                   <i className='bx bx-plus-medical' style={{ fontSize: '2rem', color: 'var(--danger-color)' }}></i>
                   <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>24x7 Care</p>
                </div>
-               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
-                  <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
+               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', minWidth: '100px' }}>
+                  <i className='bx bx-female' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
                   <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>Maternity</p>
+               </div>
+               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', minWidth: '100px' }}>
+                  <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--accent)' }}></i>
+                  <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>Pediatrics</p>
                </div>
             </div>
           </div>
