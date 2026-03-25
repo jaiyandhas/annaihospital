@@ -7,41 +7,42 @@ const SymptomChecker = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
     
     setLoading(true);
     setResult(null);
 
-    // Mock AI Analysis
-    setTimeout(() => {
-      const lowerInput = input.toLowerCase();
-      let condition = 'Mild Illness / Needs Review';
-      let dept = 'General Medicine';
-      let doc = 'Dr. Emily Brown';
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${apiUrl}/api/symptom-check`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ symptoms: input })
+      });
 
-      if (lowerInput.includes('chest') || lowerInput.includes('heart') || lowerInput.includes('breath')) {
-          condition = 'Possible Cardiovascular Issue';
-          dept = 'Cardiology';
-          doc = 'Dr. G. Jamuna Saravana Raja';
-      } else if (lowerInput.includes('headache') || lowerInput.includes('dizzy') || lowerInput.includes('numb')) {
-          condition = 'Neurological Symptoms';
-          dept = 'Neurology';
-          doc = 'Dr. Michael Chen';
-      } else if (lowerInput.includes('bone') || lowerInput.includes('joint') || lowerInput.includes('pain') || lowerInput.includes('fracture')) {
-          condition = 'Orthopedic Injury / Arthritis';
-          dept = 'Orthopedics';
-          doc = 'Dr. James Wilson';
-      } else if (lowerInput.includes('child') || lowerInput.includes('baby') || (lowerInput.includes('fever') && lowerInput.includes('kid'))) {
-          condition = 'Pediatric Infection';
-          dept = 'Pediatrics';
-          doc = 'Dr. P. Saravana Raja';
-      }
+      if (!response.ok) throw new Error('Failed to fetch from Backend API');
 
-      setResult({ condition, dept, doc });
+      const aiResponse = await response.json();
+
+      setResult({
+        condition: aiResponse.condition || 'Unknown Condition',
+        dept: aiResponse.dept || 'General Medicine',
+        doc: aiResponse.doc || 'General Physician'
+      });
+    } catch (error) {
+      console.error("AI Triage Error:", error);
+      setResult({
+        condition: 'Unable to analyze currently. Please try again.',
+        dept: 'N/A',
+        doc: 'N/A'
+      });
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -56,6 +57,13 @@ const SymptomChecker = () => {
       <section className="section">
         <div className="container" style={{ maxWidth: '800px' }}>
           <div className="glass-card" style={{ padding: '3rem' }}>
+            
+            <div style={{ background: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--danger-color)', padding: '1rem', borderRadius: '4px', marginBottom: '2rem' }}>
+              <p style={{ margin: 0, color: 'var(--danger-color)', fontSize: '0.9rem', fontWeight: 600 }}>
+                 <i className='bx bx-error-circle' style={{ marginRight: '0.5rem' }}></i>
+                 Warning: This is an AI-generated assessment, NOT professional medical advice. Always consult a qualified healthcare provider for medical concerns.
+              </p>
+            </div>
             
             {!loading && !result && (
               <div className="text-center animate-fade-in" style={{ marginBottom: '2rem' }}>

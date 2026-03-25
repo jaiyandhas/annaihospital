@@ -3,8 +3,9 @@ import React, { useState, useRef, useEffect } from 'react';
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputVal, setInputVal] = useState('');
+  const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hi there! I am the Annai AI Assistant. How can I help you today?", isUser: false }
+    { text: "Hi there! I am the Annai AI Assistant. How can I help you today?\n\n⚠️ Disclaimer: I am an AI, not a doctor. My responses are AI-generated and should not replace professional medical advice.", isUser: false }
   ]);
   const messagesEndRef = useRef(null);
 
@@ -16,25 +17,42 @@ const Chatbot = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const val = inputVal.trim();
     if (!val) return;
 
-    setMessages(prev => [...prev, { text: val, isUser: true }]);
+    const userMessage = { text: val, isUser: true };
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setInputVal('');
+    setLoading(true);
 
-    // Mock AI Reply
-    setTimeout(() => {
-      const replies = [
-        "I can help you book an appointment! Please visit the Appointment page.",
-        "Our emergency number is 911 or 1-800-EMERGENCY.",
-        "You can view our doctors in the Find Doctor section.",
-        "Please describe your symptoms on our Symptom Checker page.",
-        "I'm afraid I don't have access to your personal medical records here. Please log into the Patient Portal."
+    try {
+      const apiMessages = [
+        { role: 'system', content: 'You are the Annai Hospital AI Assistant. Be polite and helpful. Do not provide medical diagnoses. Always remind users you are an AI if discussing symptoms. Try to keep your responses concise.' },
+        ...newMessages.map(m => ({ role: m.isUser ? 'user' : 'assistant', content: m.text }))
       ];
-      const reply = replies[Math.floor(Math.random() * replies.length)];
+
+      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${apiUrl}/api/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ messages: apiMessages })
+      });
+
+      if (!response.ok) throw new Error('Chatbot API Request Failed');
+      
+      const data = await response.json();
+      const reply = data.content;
       setMessages(prev => [...prev, { text: reply, isUser: false }]);
-    }, 1000);
+    } catch (error) {
+      console.error(error);
+      setMessages(prev => [...prev, { text: "⚠️ Sorry, I am having trouble connecting to my AI servers. Please try again later.", isUser: false }]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -75,11 +93,20 @@ const Chatbot = () => {
                 background: msg.isUser ? 'var(--primary)' : 'white',
                 color: msg.isUser ? 'white' : 'var(--text-primary)',
                 alignSelf: msg.isUser ? 'flex-end' : 'flex-start',
-                boxShadow: msg.isUser ? 'none' : 'var(--shadow-sm)'
+                boxShadow: msg.isUser ? 'none' : 'var(--shadow-sm)',
+                whiteSpace: 'pre-wrap'
               }}>
                 {msg.text}
               </div>
             ))}
+            {loading && (
+              <div style={{
+                padding: '0.75rem', borderRadius: 'var(--radius-md)', maxWidth: '85%', fontSize: '0.9rem',
+                background: 'white', color: 'var(--text-primary)', alignSelf: 'flex-start', boxShadow: 'var(--shadow-sm)'
+              }}>
+                <span className="animate-pulse">Typing...</span>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
           
