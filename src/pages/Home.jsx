@@ -82,7 +82,7 @@ const Home = () => {
               Built upon a legacy of trust and medical excellence since 2007, <strong>Annai Hospital</strong> stands as the pinnacle of comprehensive <strong>Child Speciality & Maternity Care</strong> in Tiruchengode. What began as a dedicated clinic has now successfully evolved into a state-of-the-art multi-specialty institution. 
             </p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              Our newly expanded facility is fully equipped with a <strong>Level 3 Neonatal Intensive Care Unit (NICU)</strong>, Modular Operation Theatres, Advanced Infertility Care, and 24×7 trauma services. You are in the safest hands under the direct care of esteemed founders <strong>Dr. P. Saravana Raja</strong> and <strong>Dr. G. Jamuna Saravana Raja</strong>.
+              Our newly expanded facility is fully equipped with a <strong>Level 3 Neonatal Intensive Care Unit (NICU)</strong>, Modular Operation Theatres, Advanced Infertility Care, and 24×7 trauma services. You are in the safest hands under the direct care of esteemed founders <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>.
             </p>
             <blockquote style={{ borderLeft: '4px solid var(--accent)', background: 'var(--bg-color-alt)', padding: '1.5rem', fontSize: '1.15rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0', borderRadius: '0 12px 12px 0' }}>
               "Experience the pure joy of seamless, painless labor alongside a dedicated birth companion. Your family's health is our absolute priority."
@@ -221,11 +221,11 @@ const Home = () => {
                  <img src="/doctors/Saravanaraja.jpeg" alt="Dr. P. Saravanaraja" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
-                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. P. Saravana Raja</h4>
-                <p className="specialty" style={{ marginBottom: '1rem', fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Paediatrician</p>
+                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. P. Saravanaraja</h4>
+                <p className="specialty" style={{ marginBottom: '1rem', fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Consultant Neonatologist, Paediatrician & Allergy Specialist</p>
                 <div className="doc-meta" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS., DCH.
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem', lineHeight: 1.4 }}>
+                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS, DCH, MRCPCH (UK), MRCP (Edin), DPAA
                   </span>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                      <i className="bx bx-medal" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> 20+ Years Exp.
@@ -240,11 +240,11 @@ const Home = () => {
                  <img src="/doctors/Jamuna.jpeg" alt="Dr. G. Jamuna" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
-                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. G. Jamuna Saravana Raja</h4>
+                <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. G. Jamuna</h4>
                 <p className="specialty" style={{ marginBottom: '1rem', fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Obstetrician & Gynaecologist</p>
                 <div className="doc-meta" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS., DGO.
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem', lineHeight: 1.4 }}>
+                    <i className="bx bx-graduation" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> MBBS, D.G.O
                   </span>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                      <i className="bx bx-medal" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> 20+ Years Exp.
