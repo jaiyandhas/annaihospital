@@ -152,21 +152,28 @@ const Doctors = () => {
               filtered.map(doc => (
                 <div
                   key={doc.id}
-                  className="doctor-profile-card glass-card p-0"
-                  style={{ display: 'flex', flexDirection: 'column' }}
+                  className="doctor-profile-card glass-card"
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 0 1.5rem 0', position: 'relative', overflow: 'hidden' }}
                 >
-                  {/* Photo */}
+                  {/* Premium Banner at top */}
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '80px', background: 'linear-gradient(135deg, var(--primary-light), var(--primary))', zIndex: 0 }}></div>
+                  
+                  {/* Photo (Circular overlay) */}
                   <div
                     style={{
-                      height: '220px',
-                      overflow: 'hidden',
-                      borderRadius: '12px 12px 0 0',
-                      background:
-                        'linear-gradient(135deg, var(--primary-light), var(--primary))',
+                      width: '130px',
+                      height: '130px',
+                      borderRadius: '50%',
+                      background: 'white',
+                      padding: '4px',
+                      boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                      zIndex: 1,
+                      marginTop: '1.5rem',
+                      marginBottom: '1rem',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      position: 'relative',
+                      position: 'relative'
                     }}
                   >
                     {doc.image_url ? (
@@ -178,63 +185,65 @@ const Doctors = () => {
                           height: '100%',
                           objectFit: 'cover',
                           objectPosition: 'top center',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
+                          borderRadius: '50%'
                         }}
                         onError={e => {
                           e.target.style.display = 'none';
                         }}
                       />
                     ) : (
-                      <i
-                        className="bx bx-user"
-                        style={{ color: 'white', fontSize: '5rem' }}
-                      ></i>
+                      <div style={{ width: '100%', height: '100%', borderRadius: '50%', background: 'var(--bg-color-alt)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                         <i className="bx bx-user" style={{ color: 'var(--text-light)', fontSize: '3.5rem' }}></i>
+                      </div>
                     )}
                   </div>
 
                   {/* Info */}
                   <div
-                    className="doctor-info p-2"
-                    style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+                    className="doctor-info"
+                    style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', zIndex: 1, width: '100%', padding: '0 1.5rem' }}
                   >
-                    <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem' }}>
+                    <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>
                       {formatName(doc.name)}
                     </h4>
                     <p
                       className="specialty"
                       style={{
-                        marginBottom: '0.75rem',
-                        fontStyle: 'italic',
+                        marginBottom: '1.25rem',
+                        fontWeight: 600,
                         fontSize: '0.85rem',
-                        color: 'var(--text-secondary)',
+                        color: 'var(--accent-dark)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
                       }}
                     >
                       {doc.specialty || doc.department}
                     </p>
+
                     <div
                       className="doc-meta"
-                      style={{ flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}
+                      style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', alignItems: 'center', marginBottom: '1.5rem' }}
                     >
-                      <span>
-                        <i className="bx bx-graduation"></i>{' '}
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <i className="bx bx-graduation" style={{ color: '#0ea5e9', fontSize: '1.1rem' }}></i>
                         {doc.qualifications || 'MBBS'}
                       </span>
                       {doc.experience_years != null && (
-                        <span>
-                          <i className="bx bx-medal"></i> {doc.experience_years} Years Exp.
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <i className="bx bx-medal" style={{ color: '#f59e0b', fontSize: '1.1rem' }}></i> {doc.experience_years} Years Exp.
                         </span>
                       )}
-                      <span>
-                        <i className="bx bx-time"></i> {doc.availability || 'Mon-Sat'}
+                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <i className="bx bx-time" style={{ color: '#10b981', fontSize: '1.1rem' }}></i> {doc.availability || 'Mon-Sat'}
                       </span>
                     </div>
+                    
                     <button
                       className="btn btn-outline w-100 mt-auto"
+                      style={{ borderRadius: '8px', padding: '0.6rem', fontWeight: 600 }}
                       onClick={() => navigate('/appointment')}
                     >
-                      Book Appointment
+                       Book Appointment
                     </button>
                   </div>
                 </div>
