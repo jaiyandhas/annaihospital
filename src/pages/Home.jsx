@@ -206,9 +206,7 @@ const Home = () => {
           <div className="grid-2 mt-2">
             <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
               <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
-                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="bx bx-user" style={{ color: 'var(--text-light)', fontSize: '5rem' }}></i>
-                 </div>
+                 <img src="/doctors/Saravanaraja.jpeg" alt="Dr. P. Saravanaraja" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
                 <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. P. Saravana Raja</h4>
@@ -227,9 +225,7 @@ const Home = () => {
             
             <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
               <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
-                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <i className="bx bx-user" style={{ color: 'var(--text-light)', fontSize: '5rem' }}></i>
-                 </div>
+                 <img src="/doctors/Jamuna.jpeg" alt="Dr. G. Jamuna" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
                 <h4 style={{ color: 'var(--primary-dark)', marginBottom: '0.25rem', fontSize: '1.25rem' }}>Dr. G. Jamuna Saravana Raja</h4>
