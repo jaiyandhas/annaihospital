@@ -89,29 +89,18 @@ const Home = () => {
             </blockquote>
           </div>
           
-          <div className="about-image animate-fade-in" style={{ position: 'relative', animationDelay: '0.4s', height: '100%', minHeight: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" alt="Hospital Care" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.1) 60%, rgba(15, 23, 42, 0) 100%)' }}></div>
-            
-            <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-               <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '1.25rem', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                  <div style={{ background: 'rgba(249, 115, 22, 0.1)', width: '60px', height: '60px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                     <i className='bx bx-plus-medical' style={{ fontSize: '2rem', color: 'var(--accent)' }}></i>
-                  </div>
-                  <div>
-                    <h4 style={{ color: 'var(--primary-dark)', fontSize: '1.1rem', marginBottom: '0.2rem' }}>State-of-the-Art NICU</h4>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>Advanced intensive care for newborns</p>
-                  </div>
+          <div className="about-image glass-card animate-fade-in" style={{ animationDelay: '0.4s', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(219, 234, 254, 0.5))', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
+            <i className='bx bx-building-house' style={{ fontSize: '7rem', color: 'var(--primary)', marginBottom: '1.5rem', filter: 'drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2))' }}></i>
+            <h3 style={{ color: 'var(--primary-dark)', textAlign: 'center', fontSize: '1.5rem' }}>Serving Since 2007</h3>
+            <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '0.5rem' }}>Trusted by families in Tiruchengode</p>
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
+                  <i className='bx bx-plus-medical' style={{ fontSize: '2rem', color: 'var(--danger-color)' }}></i>
+                  <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>24x7 Care</p>
                </div>
-
-               <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '1.25rem', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                  <div style={{ background: 'rgba(14, 165, 233, 0.1)', width: '60px', height: '60px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                     <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
-                  </div>
-                  <div>
-                    <h4 style={{ color: 'var(--primary-dark)', fontSize: '1.1rem', marginBottom: '0.2rem' }}>Painless Maternity Care</h4>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>24/7 labor and delivery assistance</p>
-                  </div>
+               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
+                  <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
+                  <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>Maternity</p>
                </div>
             </div>
           </div>
