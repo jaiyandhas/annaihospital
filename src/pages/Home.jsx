@@ -74,32 +74,44 @@ const Home = () => {
 
       {/* About Us Section */}
       <section className="section" id="about">
-        <div className="container grid-2" style={{ alignItems: 'center', gap: '3rem' }}>
+        <div className="container grid-2" style={{ alignItems: 'center', gap: '4rem' }}>
           <div className="about-content animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <span className="badge" style={{ background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', padding: '5px 15px', borderRadius: '20px', fontWeight: 600, fontSize: '0.9rem', marginBottom: '1rem', display: 'inline-block' }}>About Us</span>
-            <h2 className="section-title text-left" style={{ marginBottom: '1.5rem', fontSize: '2.5rem', lineHeight: 1.2 }}>Annai Hospital <br/><span style={{ color: 'var(--primary)', fontSize: '1.8rem', fontWeight: 500 }}>Child Speciality & Maternity Care</span></h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              <strong>ANNAI CLINIC</strong> which was an outpatient facility is now being moved to a larger space with facilities like 24x7 emergency services, 24×7 labour and delivery assistance, Modular Operation Theatre facility, Neonatal Intensive Care Unit, Infertility Center and other Gynecological services at a new location near Valaraigate as <strong>ANNAI HOSPITAL</strong>. 
+            <span className="badge" style={{ background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', padding: '6px 16px', borderRadius: '20px', fontWeight: 700, fontSize: '0.85rem', marginBottom: '1.5rem', display: 'inline-block', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Legacy</span>
+            <h2 className="section-title text-left" style={{ marginBottom: '1.5rem', fontSize: '2.8rem', lineHeight: 1.2, color: 'var(--primary-dark)' }}>Annai Hospital <br/><span style={{ color: 'var(--accent)', fontSize: '2rem', fontWeight: 600 }}>Uncompromising Care</span></h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              Built upon a legacy of trust and medical excellence since 2007, <strong>Annai Hospital</strong> stands as the pinnacle of comprehensive <strong>Child Speciality & Maternity Care</strong> in Tiruchengode. What began as a dedicated clinic has now successfully evolved into a state-of-the-art multi-specialty institution. 
             </p>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              You will be under the care of <strong>Dr. P. Saravana Raja, MBBS., DCH.</strong>, and <strong>Dr. G. Jamuna Saravana Raja, MBBS., DGO.</strong>, leading practitioners in Tiruchengode. They have been serving people in and around Tiruchengode since 2007.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              Our newly expanded facility is fully equipped with a <strong>Level 3 Neonatal Intensive Care Unit (NICU)</strong>, Modular Operation Theatres, Advanced Infertility Care, and 24×7 trauma services. You are in the safest hands under the direct care of esteemed founders <strong>Dr. P. Saravana Raja</strong> and <strong>Dr. G. Jamuna Saravana Raja</strong>.
             </p>
-            <blockquote style={{ borderLeft: '4px solid var(--primary)', paddingLeft: '1rem', fontSize: '1.2rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0' }}>
-              "Experience the Joy of Painless Labor and birth companion at Annai Hospital."
+            <blockquote style={{ borderLeft: '4px solid var(--accent)', background: 'var(--bg-color-alt)', padding: '1.5rem', fontSize: '1.15rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0', borderRadius: '0 12px 12px 0' }}>
+              "Experience the pure joy of seamless, painless labor alongside a dedicated birth companion. Your family's health is our absolute priority."
             </blockquote>
           </div>
-          <div className="about-image glass-card animate-fade-in" style={{ animationDelay: '0.4s', padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, rgba(239, 246, 255, 0.8), rgba(219, 234, 254, 0.5))', border: '1px solid rgba(255, 255, 255, 0.8)' }}>
-            <i className='bx bx-building-house' style={{ fontSize: '7rem', color: 'var(--primary)', marginBottom: '1.5rem', filter: 'drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2))' }}></i>
-            <h3 style={{ color: 'var(--primary-dark)', textAlign: 'center', fontSize: '1.5rem' }}>Serving Since 2007</h3>
-            <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginTop: '0.5rem' }}>Trusted by families in Tiruchengode</p>
-            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
-                  <i className='bx bx-plus-medical' style={{ fontSize: '2rem', color: 'var(--danger-color)' }}></i>
-                  <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>24x7 Care</p>
+          
+          <div className="about-image animate-fade-in" style={{ position: 'relative', animationDelay: '0.4s', height: '100%', minHeight: '500px', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" alt="Hospital Care" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.1) 60%, rgba(15, 23, 42, 0) 100%)' }}></div>
+            
+            <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+               <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '1.25rem', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+                  <div style={{ background: 'rgba(249, 115, 22, 0.1)', width: '60px', height: '60px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                     <i className='bx bx-plus-medical' style={{ fontSize: '2rem', color: 'var(--accent)' }}></i>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--primary-dark)', fontSize: '1.1rem', marginBottom: '0.2rem' }}>State-of-the-Art NICU</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>Advanced intensive care for newborns</p>
+                  </div>
                </div>
-               <div style={{ textAlign: 'center', background: 'white', padding: '1rem', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)' }}>
-                  <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
-                  <p style={{ fontWeight: 600, marginTop: '0.5rem', fontSize: '0.9rem' }}>Maternity</p>
+
+               <div style={{ background: 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(10px)', padding: '1.5rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '1.25rem', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+                  <div style={{ background: 'rgba(14, 165, 233, 0.1)', width: '60px', height: '60px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                     <i className='bx bx-child' style={{ fontSize: '2rem', color: 'var(--primary)' }}></i>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'var(--primary-dark)', fontSize: '1.1rem', marginBottom: '0.2rem' }}>Painless Maternity Care</h4>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>24/7 labor and delivery assistance</p>
+                  </div>
                </div>
             </div>
           </div>
