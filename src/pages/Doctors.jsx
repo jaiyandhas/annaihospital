@@ -159,7 +159,7 @@ const Doctors = () => {
                   <div
                     style={{
                       width: '100%',
-                      aspectRatio: '4 / 3',
+                      aspectRatio: '1 / 1',
                       overflow: 'hidden',
                       background: 'var(--bg-color-alt)',
                       position: 'relative',

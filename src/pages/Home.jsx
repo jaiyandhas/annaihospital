@@ -79,13 +79,13 @@ const Home = () => {
             <span className="badge" style={{ background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', padding: '6px 16px', borderRadius: '20px', fontWeight: 700, fontSize: '0.85rem', marginBottom: '1.5rem', display: 'inline-block', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Legacy</span>
             <h2 className="section-title text-left" style={{ marginBottom: '1.5rem', fontSize: '2.8rem', lineHeight: 1.2, color: 'var(--primary-dark)' }}>Annai Hospital <br/><span style={{ color: 'var(--accent)', fontSize: '2rem', fontWeight: 600 }}>Uncompromising Care</span></h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              Built upon a legacy of trust and medical excellence since 2007, <strong>Annai Hospital</strong> stands as the pinnacle of comprehensive <strong>Child Speciality & Maternity Care</strong> in Tiruchengode. What began as a dedicated clinic has now successfully evolved into a state-of-the-art multi-specialty institution. 
+              In 2007, we started as <strong>Annai Clinic</strong>—a small, dedicated outpatient facility in Tiruchengode. Over the years, thanks to the trust of our local community, we outgrew that smaller space and evolved into <strong>Annai Hospital</strong>, a fully-equipped medical center located near Valaraigate.
             </p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              Our newly expanded facility is fully equipped with a <strong>Level 3 Neonatal Intensive Care Unit (NICU)</strong>, Modular Operation Theatres, Advanced Infertility Care, and 24×7 trauma services. You are in the safest hands under the direct care of esteemed founders <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>.
+              Today, we provide 24x7 emergency services, round-the-clock labor and delivery assistance, and advanced NICU care. You will always be under the personal care of our founders, <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>, who have been proudly serving families in this region for over 15 years.
             </p>
             <blockquote style={{ borderLeft: '4px solid var(--accent)', background: 'var(--bg-color-alt)', padding: '1.5rem', fontSize: '1.15rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0', borderRadius: '0 12px 12px 0' }}>
-              "Experience the pure joy of seamless, painless labor alongside a dedicated birth companion. Your family's health is our absolute priority."
+              "Experience the joy of painless labor and a dedicated birth companion at Annai Hospital."
             </blockquote>
           </div>
           
@@ -217,7 +217,7 @@ const Home = () => {
           
           <div className="grid-2 mt-2">
             <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
-              <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
+              <div style={{ width: '100%', aspectRatio: '1 / 1', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
                  <img src="/doctors/Saravanaraja.jpeg" alt="Dr. P. Saravanaraja" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
@@ -236,7 +236,7 @@ const Home = () => {
             </div>
             
             <div className="doctor-profile-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
-              <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
+              <div style={{ width: '100%', aspectRatio: '1 / 1', overflow: 'hidden', background: 'var(--bg-color-alt)', position: 'relative' }}>
                  <img src="/doctors/Jamuna.jpeg" alt="Dr. G. Jamuna" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
               </div>
               <div className="doctor-info" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '1.5rem' }}>
