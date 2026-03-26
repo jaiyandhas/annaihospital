@@ -59,6 +59,26 @@ const Appointment = () => {
       // Direct assignment since formData.doctorId comes directly from dbDoctors now
       const doctorDbId = formData.doctorId ? parseInt(formData.doctorId) : null;
 
+      // ── Duplicate booking guard ──────────────────────────────────────────
+      if (doctorDbId && formData.date && formData.timeSlot) {
+        const { data: existing, error: dupErr } = await supabase
+          .from('appointments')
+          .select('id')
+          .eq('doctor_id', doctorDbId)
+          .eq('appointment_date', formData.date)
+          .eq('time_slot', formData.timeSlot)
+          .in('status', ['Upcoming', 'Confirmed', 'pending'])
+          .maybeSingle();
+
+        if (dupErr) throw dupErr;
+
+        if (existing) {
+          const docName = dbDoctors.find(d => d.id === doctorDbId)?.name || 'this doctor';
+          throw new Error(`The ${formData.timeSlot} slot on ${formData.date} is already booked for ${docName}. Please choose a different time.`);
+        }
+      }
+      // ────────────────────────────────────────────────────────────────────
+
       const { data, error } = await supabase.from('appointments').insert([{
         patient_id: patientId, // Can be null for guests
         doctor_id: doctorDbId,

@@ -599,7 +599,26 @@ export const renderAppointment = async (container) => {
 
         const aptDocData = doctors.find(d => d.id === selectedDoctorId);
 
-        // Create Appointment
+        // ── Duplicate booking guard ──────────────────────────────────────────
+        const { data: existing, error: dupErr } = await supabase
+          .from('appointments')
+          .select('id')
+          .eq('doctor_id', selectedDoctorId)
+          .eq('appointment_date', selectedDate)
+          .eq('time_slot', selectedTime)
+          .in('status', ['Confirmed', 'pending'])
+          .maybeSingle();
+
+        if (dupErr) throw dupErr;
+
+        if (existing) {
+          errBox.innerText = `This time slot (${selectedTime} on ${selectedDate}) is already booked for ${aptDocData.name}. Please select a different time.`;
+          errBox.style.display = 'block';
+          submitBtn.innerHTML = originalBtnText;
+          submitBtn.disabled = false;
+          return;
+        }
+        // ────────────────────────────────────────────────────────────────────
         const { data: aptData, error: aptErr } = await supabase.from('appointments').insert([{
           patient_id: patientId,
           doctor_id: selectedDoctorId,
