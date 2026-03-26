@@ -597,22 +597,23 @@ export const renderAppointment = async (container) => {
           }
         }
 
-        const aptDocData = doctors.find(d => d.id === selectedDoctorId);
+        const doctorDbId = parseInt(selectedDoctorId, 10);
+        const aptDocData = doctors.find(d => d.id == doctorDbId);
 
         // ── Duplicate booking guard ──────────────────────────────────────────
         const { data: existing, error: dupErr } = await supabase
           .from('appointments')
           .select('id')
-          .eq('doctor_id', selectedDoctorId)
+          .eq('doctor_id', doctorDbId)
           .eq('appointment_date', selectedDate)
           .eq('time_slot', selectedTime)
-          .in('status', ['Confirmed', 'pending'])
+          .in('status', ['Confirmed', 'Upcoming', 'Pending', 'pending', 'upcoming', 'confirmed'])
           .maybeSingle();
 
         if (dupErr) throw dupErr;
 
         if (existing) {
-          errBox.innerText = `This time slot (${selectedTime} on ${selectedDate}) is already booked for ${aptDocData.name}. Please select a different time.`;
+          errBox.innerText = `This time slot (${selectedTime} on ${selectedDate}) is already booked for ${aptDocData?.name || 'this doctor'}. Please select a different time.`;
           errBox.style.display = 'block';
           submitBtn.innerHTML = originalBtnText;
           submitBtn.disabled = false;

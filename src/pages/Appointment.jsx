@@ -67,7 +67,7 @@ const Appointment = () => {
           .eq('doctor_id', doctorDbId)
           .eq('appointment_date', formData.date)
           .eq('time_slot', formData.timeSlot)
-          .in('status', ['Upcoming', 'Confirmed', 'pending'])
+          .in('status', ['Confirmed', 'Upcoming', 'Pending', 'pending', 'upcoming', 'confirmed'])
           .maybeSingle();
 
         if (dupErr) throw dupErr;
