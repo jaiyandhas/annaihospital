@@ -19,12 +19,28 @@ const departmentsRecord = [
     doc: 'Dr. Jamuna Saravanaraja'
   },
   {
+    title: 'Pulmonology & Sleep Medicine',
+    bg: 'linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.9))',
+    icon: 'bx-wind',
+    desc: 'Expert diagnosis and management of respiratory disorders, allergies, and sleep-related breathing issues for improved pulmonary health.',
+    tags: ['Asthma Care', 'Sleep Apnea', 'Lung Function Testing'],
+    doc: 'Dr. M. Punitha'
+  },
+  {
+    title: 'Cardiology',
+    bg: 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))',
+    icon: 'bx-heart',
+    desc: 'Cutting-edge cardiovascular care, from preventive screenings and diagnostics to advanced interventions and cardiac rehabilitation.',
+    tags: ['Echocardiogram', 'Interventional Cardiology', 'Heart Failure'],
+    doc: 'Dr. Priya'
+  },
+  {
     title: 'General & Laparoscopic Surgery',
     bg: 'linear-gradient(135deg, rgba(14, 165, 233, 0.9), rgba(15, 76, 129, 0.9))',
     icon: 'bx-plus-medical',
     desc: 'Advanced minimally invasive surgical procedures ensuring quicker recovery, less pain, and minimal scarring alongside traditional general surgery excellence.',
     tags: ['Laparoscopy', 'Hernia', 'Appendicitis'],
-    doc: 'Dr. M. Kathiravan'
+    doc: 'Dr. Vimala'
   },
   {
     title: 'Orthopaedics',
@@ -41,22 +57,6 @@ const departmentsRecord = [
     desc: 'Dedicated surgical care for neonates, infants, and children. Handling complex congenital and acquired conditions with utmost precision and care.',
     tags: ['Neonatal Surgery', 'Congenital Anomalies', 'Urology'],
     doc: 'Dr. P. Jayakumar'
-  },
-  {
-    title: 'Pulmonology & Sleep Medicine',
-    bg: 'linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(79, 70, 229, 0.9))',
-    icon: 'bx-wind',
-    desc: 'Expert diagnosis and management of respiratory disorders, allergies, and sleep-related breathing issues for improved pulmonary health.',
-    tags: ['Asthma Care', 'Sleep Apnea', 'Lung Function Testing'],
-    doc: 'Dr. M. Punitha'
-  },
-  {
-    title: 'Cardiology',
-    bg: 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))',
-    icon: 'bx-heart',
-    desc: 'Cutting-edge cardiovascular care, from preventive screenings and diagnostics to advanced interventions and cardiac rehabilitation.',
-    tags: ['Echocardiogram', 'Interventional Cardiology', 'Heart Failure'],
-    doc: 'Dr. Priya'
   },
   {
     title: 'Anaesthesiology',

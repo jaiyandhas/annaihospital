@@ -42,36 +42,16 @@ VALUES
     ),
     (
         3,
-        'Dr. Vimala',
-        'General & Laparoscopic Surgery',
-        'General & Laparoscopic Surgeon',
-        'MBBS, MS (JIPMER), DNB, FMAS',
-        'Mon-Sat: On Call',
-        '/doctors/Vimala.jpeg',
+        'Dr. M. Punitha',
+        'Pulmonology & Sleep Medicine',
+        'Consultant Pulmonologist & Sleep Specialist',
+        'MBBS, DTCD, DNB',
+        'Mon-Sat: 05:00 PM - 08:00 PM',
+        '/doctors/Punita.jpeg',
         'doctor'
     ),
     (
         4,
-        'Dr. M. Karthikeyen',
-        'Orthopaedics',
-        'Orthopaedic Surgeon',
-        'MBBS, MS (Ortho), DNB (Ortho)',
-        'Mon-Sat: On Call',
-        '/doctors/KARTHIKEYEN.jpeg',
-        'doctor'
-    ),
-    (
-        5,
-        'Dr. P. Jayakumar',
-        'Paediatric Surgery',
-        'Paediatric Surgeon',
-        'MBBS, MS, MCh',
-        'Mon-Sat: On Call',
-        '/doctors/Jayakumar.jpeg',
-        'doctor'
-    ),
-    (
-        6,
         'Dr. Priya',
         'Cardiology',
         'Cardiologist',
@@ -81,13 +61,33 @@ VALUES
         'doctor'
     ),
     (
+        5,
+        'Dr. Vimala',
+        'General & Laparoscopic Surgery',
+        'General & Laparoscopic Surgeon',
+        'MBBS, MS (JIPMER), DNB, FMAS',
+        'Mon-Sat: On Call',
+        '/doctors/Vimala.jpeg',
+        'doctor'
+    ),
+    (
+        6,
+        'Dr. M. Karthikeyen',
+        'Orthopaedics',
+        'Orthopaedic Surgeon',
+        'MBBS, MS (Ortho), DNB (Ortho)',
+        'Mon-Sat: On Call',
+        '/doctors/KARTHIKEYEN.jpeg',
+        'doctor'
+    ),
+    (
         7,
-        'Dr. M. Punitha',
-        'Pulmonology & Sleep Medicine',
-        'Consultant Pulmonologist & Sleep Specialist',
-        'MBBS, DTCD, DNB',
-        'Mon-Sat: 05:00 PM - 08:00 PM',
-        '/doctors/Punita.jpeg',
+        'Dr. P. Jayakumar',
+        'Paediatric Surgery',
+        'Paediatric Surgeon',
+        'MBBS, MS, MCh',
+        'Mon-Sat: On Call',
+        '/doctors/Jayakumar.jpeg',
         'doctor'
     ),
     (
