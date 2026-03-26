@@ -46,7 +46,7 @@ VALUES
         'General & Laparoscopic Surgery',
         'General & Laparoscopic Surgeon',
         'MBBS, MS (JIPMER), DNB, FMAS',
-        'Mon-Sat: 09:00 AM - 05:00 PM',
+        'Mon-Sat: On Call',
         '/doctors/Vimala.jpeg',
         'doctor'
     ),
@@ -56,7 +56,7 @@ VALUES
         'Orthopaedics',
         'Orthopaedic Surgeon',
         'MBBS, MS (Ortho), DNB (Ortho)',
-        'Mon-Sat: 09:00 AM - 05:00 PM',
+        'Mon-Sat: On Call',
         '/doctors/KARTHIKEYEN.jpeg',
         'doctor'
     ),
@@ -66,7 +66,7 @@ VALUES
         'Paediatric Surgery',
         'Paediatric Surgeon',
         'MBBS, MS, MCh',
-        'Mon-Sat: 09:00 AM - 05:00 PM',
+        'Mon-Sat: On Call',
         '/doctors/Jayakumar.jpeg',
         'doctor'
     ),
@@ -76,7 +76,7 @@ VALUES
         'Cardiology',
         'Cardiologist',
         'MBBS, MD (Internal Medicine), DrNB (Cardiology)',
-        'Mon-Sat: 09:00 AM - 05:00 PM',
+        'Mon-Sat: On Call',
         '/doctors/Priya.jpeg',
         'doctor'
     ),
@@ -86,7 +86,7 @@ VALUES
         'Pulmonology & Sleep Medicine',
         'Consultant Pulmonologist & Sleep Specialist',
         'MBBS, DTCD, DNB',
-        'Mon-Sat: 09:00 AM - 05:00 PM',
+        'Mon-Sat: 05:00 PM - 08:00 PM',
         '/doctors/Punita.jpeg',
         'doctor'
     ),
