@@ -631,7 +631,7 @@ export const renderAppointment = async (container) => {
               'Accept': 'application/json'
             },
             body: JSON.stringify({
-              access_key: "944aa710-b3ad-4420-83d6-c368805954e0",
+              access_key: "ec08be00-7d1d-4962-9da6-d4af523109cb",
               subject: `New Mega Appointment: ${finalPatName}`,
               from_name: "Annai Hospital System",
               message: `New appointment booked!
