@@ -64,7 +64,7 @@ const Home = () => {
                    </div>
                    <div>
                       <p style={{ margin: 0, fontWeight: 700, color: 'var(--primary-dark)', fontSize: '1.1rem' }}>Expert Care</p>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Over 15 Years of Service</p>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Over 20 Years of Service</p>
                    </div>
                 </div>
              </div>
@@ -82,7 +82,7 @@ const Home = () => {
               We started as <strong>Annai Clinic</strong>—a small, dedicated outpatient facility in Tiruchengode. Over the years, thanks to the trust of our local community, we outgrew that smaller space and evolved into <strong>Annai Hospital</strong>, a fully-equipped medical center located near Valaraigate.
             </p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              Today, we provide 24x7 emergency services, round-the-clock labor and delivery assistance, and advanced NICU care. You will always be under the personal care of our founders, <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>, who have been proudly serving families in this region for over 15 years.
+              Today, we provide 24x7 emergency services, round-the-clock labor and delivery assistance, and advanced NICU care. You will always be under the personal care of our founders, <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. G. Jamuna</strong>, who have been proudly serving families in this region for over 20 years.
             </p>
             <blockquote style={{ borderLeft: '4px solid var(--accent)', background: 'var(--bg-color-alt)', padding: '1.5rem', fontSize: '1.15rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0', borderRadius: '0 12px 12px 0' }}>
               "Experience the joy of painless labor and a dedicated birth companion at Annai Hospital."
