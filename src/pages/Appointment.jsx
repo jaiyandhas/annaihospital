@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 
-const doctorsList = [
-  { id: 1, name: 'P. Saravana Raja', specialty: 'Pediatrics', fee: 500, db_id: null },
-  { id: 2, name: 'G. Jamuna Saravana Raja', specialty: 'Maternity/Gynecology', fee: 500, db_id: null }
-];
-
 const Appointment = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -61,9 +56,8 @@ const Appointment = () => {
     setLoading(true);
 
     try {
-      // Find exact doctor UUID if exists
-      const doc = dbDoctors.find(d => d.name.includes(doctorsList.find(dl => dl.id === parseInt(formData.doctorId))?.name));
-      const doctorDbId = doc ? doc.id : null;
+      // Direct assignment since formData.doctorId comes directly from dbDoctors now
+      const doctorDbId = formData.doctorId ? parseInt(formData.doctorId) : null;
 
       const { data, error } = await supabase.from('appointments').insert([{
         patient_id: patientId, // Can be null for guests
@@ -115,10 +109,9 @@ const Appointment = () => {
                   <label className="form-label">Select Department *</label>
                   <select className="form-control" name="department" value={formData.department} onChange={handleChange} required>
                     <option value="">-- Choose Department --</option>
-                    <option value="Pediatrics">Pediatrics</option>
-                    <option value="Maternity">Maternity/Gynecology</option>
-                    <option value="General Medicine">General Medicine</option>
-                    <option value="Cardiology">Cardiology</option>
+                    {[...new Set(dbDoctors.map(doc => doc.department))].map(dept => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
                   </select>
                 </div>
                 
@@ -126,7 +119,7 @@ const Appointment = () => {
                   <div className="form-group fade-in mt-2">
                     <label className="form-label">Select Doctor (Optional)</label>
                     <div className="grid-2">
-                      {doctorsList.map(doc => (
+                      {dbDoctors.filter(doc => doc.department === formData.department).map(doc => (
                         <div 
                           key={doc.id}
                           className={`doctor-card glass-card ${parseInt(formData.doctorId) === doc.id ? 'selected' : ''}`}
@@ -213,7 +206,7 @@ const Appointment = () => {
                 </div>
                 
                 <div style={{ background: 'var(--bg-color-alt)', padding: '1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem' }}>
-                   <strong>Summary:</strong> {formData.department} Appointment {formData.doctorId && `with Dr. ${doctorsList.find(d=>d.id == formData.doctorId)?.name}`} on {formData.date} at {formData.timeSlot}.
+                   <strong>Summary:</strong> {formData.department} Appointment {formData.doctorId && `with Dr. ${dbDoctors.find(d=>d.id === parseInt(formData.doctorId))?.name}`} on {formData.date} at {formData.timeSlot}.
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>

@@ -35,10 +35,38 @@ const SymptomChecker = () => {
       });
     } catch (error) {
       console.error("AI Triage Error:", error);
+      
+      const lowerInput = input.toLowerCase();
+      let matchedCond = 'General Symptoms';
+      let matchedDept = 'General Medicine';
+      let matchedDoc = 'Consulting Physician';
+      
+      if (lowerInput.includes('child') || lowerInput.includes('baby') || lowerInput.includes('fever') || lowerInput.includes('cough')) {
+        matchedCond = 'Pediatric Symptom / Common Infection';
+        matchedDept = 'Neonatology & Paediatrics';
+        matchedDoc = 'Dr. P. Saravanaraja';
+      } else if (lowerInput.includes('pregnan') || lowerInput.includes('period') || lowerInput.includes('women')) {
+        matchedCond = 'Gynecological / Obstetric Concern';
+        matchedDept = 'Obstetrics & Gynaecology';
+        matchedDoc = 'Dr. G. Jamuna';
+      } else if (lowerInput.includes('bone') || lowerInput.includes('joint') || lowerInput.includes('pain')) {
+        matchedCond = 'Orthopedic Issue';
+        matchedDept = 'Orthopaedics';
+        matchedDoc = 'Dr. M. Karthikeyen';
+      } else if (lowerInput.includes('breath') || lowerInput.includes('asthma') || lowerInput.includes('lung')) {
+        matchedCond = 'Respiratory Issue';
+        matchedDept = 'Pulmonology & Sleep Medicine';
+        matchedDoc = 'Dr. K.P. Karthikeyan';
+      } else if (lowerInput.includes('stomach') || lowerInput.includes('abdomen')) {
+        matchedCond = 'Surgical / Abdominal Concern';
+        matchedDept = 'General & Laparoscopic Surgery';
+        matchedDoc = 'Dr. M. Kathiravan';
+      }
+
       setResult({
-        condition: 'Unable to analyze currently. Please try again.',
-        dept: 'N/A',
-        doc: 'N/A'
+        condition: matchedCond + ' (Offline Match)',
+        dept: matchedDept,
+        doc: matchedDoc
       });
     } finally {
       setLoading(false);
