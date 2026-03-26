@@ -16,7 +16,7 @@ const departmentsRecord = [
     icon: 'bx-female',
     desc: 'Comprehensive women\'s health services from adolescence through menopause, including expert maternity care, reproductive health, and surgical interventions.',
     tags: ['Maternity Care', 'Women\'s Wellness', 'Surgical Obstetrics'],
-    doc: 'Dr. G. Jamuna'
+    doc: 'Dr. Jamuna Saravanaraja'
   },
   {
     title: 'General & Laparoscopic Surgery',
@@ -40,7 +40,7 @@ const departmentsRecord = [
     icon: 'bxs-baby-carriage',
     desc: 'Dedicated surgical care for neonates, infants, and children. Handling complex congenital and acquired conditions with utmost precision and care.',
     tags: ['Neonatal Surgery', 'Congenital Anomalies', 'Urology'],
-    doc: 'Dr. M. Boopathi'
+    doc: 'Dr. P. Jayakumar'
   },
   {
     title: 'Pulmonology & Sleep Medicine',
@@ -48,7 +48,15 @@ const departmentsRecord = [
     icon: 'bx-wind',
     desc: 'Expert diagnosis and management of respiratory disorders, allergies, and sleep-related breathing issues for improved pulmonary health.',
     tags: ['Asthma Care', 'Sleep Apnea', 'Lung Function Testing'],
-    doc: 'Dr. K.P. Karthikeyan'
+    doc: 'Dr. M. Punitha'
+  },
+  {
+    title: 'Cardiology',
+    bg: 'linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9))',
+    icon: 'bx-heart',
+    desc: 'Cutting-edge cardiovascular care, from preventive screenings and diagnostics to advanced interventions and cardiac rehabilitation.',
+    tags: ['Echocardiogram', 'Interventional Cardiology', 'Heart Failure'],
+    doc: 'Dr. Priya'
   },
   {
     title: 'Anaesthesiology',
@@ -56,7 +64,7 @@ const departmentsRecord = [
     icon: 'bx-pulse',
     desc: 'Ensuring patient safety and comfort during surgical procedures with advanced pain management and critical care expertise.',
     tags: ['Pain Management', 'Perioperative Care', 'Critical Care'],
-    doc: 'Dr. S. Karthikeyan'
+    doc: 'Dr. G. Arul & Dr. S.U. Chithrapavai'
   }
 ];
 
@@ -76,9 +84,9 @@ const Departments = () => {
           <div className="grid-2" style={{ gap: '2.5rem', marginBottom: '3rem' }}>
              
              {departmentsRecord.map((dept, index) => (
-               <div key={index} className="glass-card dept-detail-card animate-slide-up" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', border: '2px solid var(--primary)', animationDelay: \`\${index * 0.1}s\` }}>
+               <div key={index} className="glass-card dept-detail-card animate-slide-up" style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column', border: '2px solid var(--primary)', animationDelay: (index * 0.1) + 's' }}>
                   <div style={{ height: '200px', background: dept.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                     <i className={\`bx \${dept.icon}\`} style={{ fontSize: '5rem', color: 'white' }}></i>
+                     <i className={"bx " + dept.icon} style={{ fontSize: '5rem', color: 'white' }}></i>
                   </div>
                   <div style={{ padding: '2rem', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                      <h2 style={{ color: 'var(--primary-dark)', marginBottom: '1rem' }}>{dept.title}</h2>

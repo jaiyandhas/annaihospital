@@ -578,7 +578,7 @@ const AdminPortal = () => {
                           ? doctors.map(d => <option key={d.id} value={d.name}>{d.name} — {d.department}</option>)
                           : <>
                               <option value="Dr. P. Saravana Raja">Dr. P. Saravana Raja — Pediatrics</option>
-                              <option value="Dr. G. Jamuna Saravana Raja">Dr. G. Jamuna Saravana Raja — Gynaecology</option>
+                              <option value="Dr. Jamuna Saravanaraja">Dr. Jamuna Saravanaraja — Gynaecology</option>
                             </>
                         }
                       </select>

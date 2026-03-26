@@ -48,7 +48,7 @@ const SymptomChecker = () => {
       } else if (lowerInput.includes('pregnan') || lowerInput.includes('period') || lowerInput.includes('women')) {
         matchedCond = 'Gynecological / Obstetric Concern';
         matchedDept = 'Obstetrics & Gynaecology';
-        matchedDoc = 'Dr. G. Jamuna';
+        matchedDoc = 'Dr. Jamuna Saravanaraja';
       } else if (lowerInput.includes('bone') || lowerInput.includes('joint') || lowerInput.includes('pain')) {
         matchedCond = 'Orthopedic Issue';
         matchedDept = 'Orthopaedics';

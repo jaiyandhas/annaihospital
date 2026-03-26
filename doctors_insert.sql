@@ -32,7 +32,7 @@ VALUES
     ),
     (
         2,
-        'Dr. G. Jamuna',
+        'Dr. Jamuna Saravanaraja',
         'Obstetrics & Gynaecology',
         'Obstetrician & Gynaecologist',
         'MBBS, D.G.O',
@@ -72,6 +72,16 @@ VALUES
     ),
     (
         6,
+        'Dr. Priya',
+        'Cardiology',
+        'Cardiologist',
+        'MBBS, MD (Internal Medicine), DrNB (Cardiology)',
+        'Mon-Sat: 09:00 AM - 05:00 PM',
+        '/doctors/Priya.jpeg',
+        'doctor'
+    ),
+    (
+        7,
         'Dr. M. Punitha',
         'Pulmonology & Sleep Medicine',
         'Consultant Pulmonologist & Sleep Specialist',
@@ -81,7 +91,7 @@ VALUES
         'doctor'
     ),
     (
-        7,
+        8,
         'Dr. G. Arul',
         'Anaesthesiology',
         'Anaesthesiologist',
@@ -91,7 +101,7 @@ VALUES
         'doctor'
     ),
     (
-        8,
+        9,
         'Dr. S. U. Chithrapavai',
         'Anaesthesiology',
         'Anaesthesiologist',
