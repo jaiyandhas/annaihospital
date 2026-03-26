@@ -79,10 +79,19 @@ const Home = () => {
             <span className="badge" style={{ background: 'rgba(14, 165, 233, 0.1)', color: 'var(--primary)', padding: '6px 16px', borderRadius: '20px', fontWeight: 700, fontSize: '0.85rem', marginBottom: '1.5rem', display: 'inline-block', textTransform: 'uppercase', letterSpacing: '1px' }}>Our Legacy</span>
             <h2 className="section-title text-left" style={{ marginBottom: '1.5rem', fontSize: '2.8rem', lineHeight: 1.2, color: 'var(--primary-dark)' }}>Annai Hospital <br/><span style={{ color: 'var(--accent)', fontSize: '2rem', fontWeight: 600 }}>Uncompromising Care</span></h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              We started as <strong>Annai Clinic</strong>—a small, dedicated outpatient facility in Tiruchengode. Over the years, thanks to the trust of our local community, we outgrew that smaller space and evolved into <strong>Annai Hospital</strong>, a fully-equipped medical center located near Valaraigate.
+              Annai Hospital began its journey as Annai Clinic, a modest outpatient facility in Tiruchengode. With the continued trust and support of the community, it steadily grew into a comprehensive, fully equipped hospital located near Valaraigate—committed to delivering compassionate and modern healthcare.
             </p>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
-              Today, we provide 24x7 emergency services, round-the-clock labor and delivery assistance, and advanced NICU care. You will always be under the personal care of our founders, <strong>Dr. P. Saravanaraja</strong> and <strong>Dr. Jamuna Saravanaraja</strong>, who have been proudly serving families in this region for over 20 years.
+              Today, Annai Hospital offers 24×7 emergency care, round-the-clock maternity services, and advanced neonatal and pediatric intensive care. Our approach to childbirth is centered on comfort, safety, and personalization—featuring painless labour options, epidural and Entonox support, and the reassurance of a birth companion, allowing husbands to be present during labour.
+            </p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              We believe in holistic maternal care, supporting mothers through every stage with antenatal, prenatal, and postnatal guidance, including yoga ball exercises and personalized wellness programs. Our pediatric services extend beyond treatment, focusing on child nutrition, allergy and asthma care, hearing screening, and specialized monitoring to ensure healthy development from the very beginning.
+            </p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              At the heart of Annai Hospital is the personal care and dedication of our founders, Dr. P. Saravanaraja and Dr. Jamuna Saravanaraja, who have been serving families in this region for over two decades with trust, empathy, and expertise.
+            </p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
+              Experience safe, comfortable, and family-centered care—where every mother and child is treated with utmost attention and warmth.
             </p>
             <blockquote style={{ borderLeft: '4px solid var(--accent)', background: 'var(--bg-color-alt)', padding: '1.5rem', fontSize: '1.15rem', fontStyle: 'italic', color: 'var(--primary-dark)', margin: '2rem 0', borderRadius: '0 12px 12px 0' }}>
               "Experience the joy of painless labor and a dedicated birth companion at Annai Hospital."

@@ -56,7 +56,7 @@ VALUES
         'Cardiology',
         'Cardiologist',
         'MBBS, MD (Internal Medicine), DrNB (Cardiology)',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/Priya.jpeg',
         'doctor'
     ),
@@ -66,7 +66,7 @@ VALUES
         'General & Laparoscopic Surgery',
         'General & Laparoscopic Surgeon',
         'MBBS, MS (JIPMER), DNB, FMAS',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/Vimala.jpeg',
         'doctor'
     ),
@@ -76,7 +76,7 @@ VALUES
         'Orthopaedics',
         'Orthopaedic Surgeon',
         'MBBS, MS (Ortho), DNB (Ortho)',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/KARTHIKEYEN.jpeg',
         'doctor'
     ),
@@ -86,7 +86,7 @@ VALUES
         'Paediatric Surgery',
         'Paediatric Surgeon',
         'MBBS, MS, MCh',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/Jayakumar.jpeg',
         'doctor'
     ),
@@ -96,7 +96,7 @@ VALUES
         'Anaesthesiology',
         'Anaesthesiologist',
         'MBBS, DA',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/ARUL.jpeg',
         'doctor'
     ),
@@ -106,7 +106,7 @@ VALUES
         'Anaesthesiology',
         'Anaesthesiologist',
         'MBBS, DA',
-        'Mon-Sat: On Call',
+        'On Call',
         '/doctors/CHITHRAPAVAI.jpeg',
         'doctor'
     );
