@@ -10,6 +10,7 @@ const PatientPortal = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [labReports, setLabReports] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ongoingTokens, setOngoingTokens] = useState({}); // { doctor_id: token_number }
 
   useEffect(() => {
     fetchUserData();
@@ -57,6 +58,41 @@ const PatientPortal = () => {
           .eq('patient_id', profile.id)
           .order('created_at', { ascending: false });
         setLabReports(labs || []);
+
+        // Fetch ongoing tokens for doctors the patient is seeing today
+        if (apts && apts.length > 0) {
+          const todayDocs = apts
+            .filter(a => new Date(a.appointment_date).toDateString() === new Date().toDateString())
+            .map(a => a.doctor_id);
+          
+          if (todayDocs.length > 0) {
+             const { data: ongoingApts } = await supabase
+               .from('appointments')
+               .select('doctor_id, token_number')
+               .in('doctor_id', todayDocs)
+               .eq('appointment_date', new Date().toISOString().split('T')[0])
+               .eq('status', 'Ongoing');
+             
+             if (ongoingApts) {
+               const mapping = {};
+               ongoingApts.forEach(a => mapping[a.doctor_id] = a.token_number);
+               setOngoingTokens(mapping);
+             }
+
+             // Realtime listener for queue updates
+             const channels = supabase.channel('queue-updates')
+               .on(
+                 'postgres_changes',
+                 { event: 'UPDATE', schema: 'public', table: 'appointments' },
+                 (payload) => {
+                   if (payload.new.status === 'Ongoing') {
+                     setOngoingTokens(prev => ({ ...prev, [payload.new.doctor_id]: payload.new.token_number }));
+                   }
+                 }
+               )
+               .subscribe();
+          }
+        }
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -155,16 +191,56 @@ const PatientPortal = () => {
                    <p style={{ color: 'var(--text-light)', fontStyle: 'italic' }}>No upcoming appointments scheduled.</p>
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    {upcomingApts.map(apt => (
-                      <div key={apt.id} style={{ padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--accent)' }}>
+                    {upcomingApts.map(apt => {
+                      const isToday = new Date(apt.appointment_date).toDateString() === new Date().toDateString();
+                      const currentOngoing = ongoingTokens[apt.doctor_id] || 0;
+                      const isMyTurn = currentOngoing === apt.token_number;
+                      const estimatedWaitTokens = apt.token_number - currentOngoing;
+                      
+                      return (
+                      <div key={apt.id} style={{ padding: '1rem', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--accent)', background: isToday ? 'rgba(14, 165, 233, 0.05)' : 'transparent' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
                           <h4 style={{ color: 'var(--text-primary)', margin: 0 }}>{apt.department} Consultation</h4>
-                          <span className="status-badge status-yellow" style={{ fontSize: '0.7rem' }}>Reminder</span>
+                          <span className={`status-badge ${apt.status === 'Ongoing' ? 'status-green' : 'status-yellow'}`} style={{ fontSize: '0.7rem', background: apt.status === 'Ongoing' ? 'var(--success-color)' : '', color: apt.status === 'Ongoing' ? 'white' : ''}}>
+                            {apt.status || 'Scheduled'}
+                          </span>
                         </div>
                         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}><i className='bx bx-user-pin'></i> Dr. {apt.doctors?.name || 'Assigned Doctor'}</p>
-                        <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 500, margin: 0 }}><i className='bx bx-calendar'></i> {new Date(apt.appointment_date).toLocaleDateString()} - {apt.time_slot}</p>
+                        <p style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 500, margin: 0 }}><i className='bx bx-calendar'></i> {new Date(apt.appointment_date).toLocaleDateString()}</p>
+                        
+                        {/* Live token tracker if appointment is today and has a token */}
+                        {isToday && apt.token_number && (
+                          <div style={{ marginTop: '1rem', padding: '1rem', background: 'white', borderRadius: '8px', border: '1px solid rgba(15, 76, 129, 0.2)' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <div>
+                                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Your Token</p>
+                                <h2 style={{ margin: 0, color: 'var(--primary-dark)', fontSize: '1.8rem' }}>#{apt.token_number}</h2>
+                              </div>
+                              <div style={{ textAlign: 'right' }}>
+                                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Now Serving</p>
+                                <h2 style={{ margin: 0, color: currentOngoing ? 'var(--success-color)' : 'var(--text-light)', fontSize: '1.8rem' }}>
+                                  {currentOngoing ? `#${currentOngoing}` : '—'}
+                                </h2>
+                              </div>
+                            </div>
+                            
+                            {apt.status === 'Completed' ? (
+                               <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--success-color)', fontWeight: 600 }}>Consultation completed.</p>
+                            ) : isMyTurn ? (
+                               <div style={{ marginTop: '0.8rem', padding: '0.5rem', background: 'rgba(34, 197, 94, 0.1)', color: 'var(--success-color)', borderRadius: '6px', textAlign: 'center', fontWeight: 'bold', animation: 'pulse 2s infinite' }}>
+                                 <i className='bx bx-bell'></i> It is your turn! Please go to the doctor's room.
+                               </div>
+                            ) : estimatedWaitTokens > 0 ? (
+                              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--warning-color)', fontWeight: 500 }}>
+                                <i className='bx bx-time'></i> Estimated wait: ~{estimatedWaitTokens * 10} mins ({estimatedWaitTokens} patients ahead)
+                              </p>
+                            ) : (
+                              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.85rem', color: 'var(--text-light)', fontStyle: 'italic' }}>Queue hasn't reached your token yet.</p>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    ))}
+                    )})}
                   </div>
                 )}
               </div>

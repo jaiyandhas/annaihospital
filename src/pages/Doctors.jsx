@@ -103,6 +103,8 @@ const Doctors = () => {
                   <option value="Paediatric Surgery">Paediatric Surgery</option>
                   <option value="Anaesthesiology">Anaesthesiology</option>
                   <option value="General & Laparoscopic Surgery">General &amp; Laparoscopic Surgery</option>
+                  <option value="General Medicine">General Medicine</option>
+                  <option value="Radiology">Radiology</option>
                 </select>
               </div>
               <div className="form-group" style={{ margin: 0 }}>

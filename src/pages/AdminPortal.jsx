@@ -33,6 +33,9 @@ const StatCard = ({ icon, value, label, color }) => (
 );
 
 const STATUS_COLORS = {
+  'Waiting':   { bg: 'rgba(251, 191, 36, 0.15)', color: '#d97706' },
+  'Ongoing':   { bg: 'rgba(16, 185, 129, 0.2)',  color: '#059669' },
+  'Skipped':   { bg: 'rgba(245, 158, 11, 0.1)',  color: '#f59e0b' },
   'Upcoming':  { bg: 'rgba(251, 191, 36, 0.15)', color: '#d97706' },
   'Scheduled': { bg: 'rgba(14, 165, 233, 0.1)',  color: '#0284c7' },
   'Confirmed': { bg: 'rgba(16, 185, 129, 0.12)', color: '#059669' },
@@ -71,6 +74,10 @@ const AdminPortal = () => {
 
   // Appointment filter
   const [aptFilter, setAptFilter] = useState('All');
+
+  // Queue filter
+  const [queueDoctor, setQueueDoctor] = useState('');
+  const [queueDate, setQueueDate] = useState(new Date().toISOString().split('T')[0]);
 
   const showToast = (message, type = 'success') => {
     setToast({ message, type });
@@ -218,6 +225,7 @@ const AdminPortal = () => {
   const tabs = [
     { id: 'dashboard',    label: 'Dashboard',    icon: 'bx-grid-alt' },
     { id: 'patients',     label: 'Patients',     icon: 'bx-group' },
+    { id: 'queue',        label: 'Live Queue',   icon: 'bx-git-pull-request' },
     { id: 'appointments', label: 'Appointments', icon: 'bx-calendar' },
     { id: 'doctors',      label: 'Doctors',      icon: 'bx-user-pin' },
     { id: 'upload',       label: 'Upload Report', icon: 'bx-upload' },
@@ -386,6 +394,76 @@ const AdminPortal = () => {
             </div>
           )}
 
+          {/* ── LIVE QUEUE TAB ─────────────────────────── */}
+          {activeTab === 'queue' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                <div>
+                  <h2 style={{ color: 'var(--primary-dark)', display: 'flex', alignItems: 'center', gap: '0.5rem', margin: 0 }}>
+                    <i className='bx bx-git-pull-request'></i> Live Token Queue
+                  </h2>
+                  <p style={{ margin: '0.5rem 0 0 0', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Manage today's tokens. Only one "Ongoing" token allowed per doctor at a time.</p>
+                </div>
+                
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <input type="date" className="form-control" value={queueDate} onChange={e => setQueueDate(e.target.value)} style={{ padding: '0.5rem', minWidth: '150px' }} />
+                    <select className="form-control" value={queueDoctor} onChange={e => setQueueDoctor(e.target.value)} style={{ padding: '0.5rem', minWidth: '200px' }}>
+                        <option value="">-- All Doctors --</option>
+                        {doctors.map(d => <option key={d.id} value={d.id}>Dr. {d.name}</option>)}
+                    </select>
+                </div>
+              </div>
+              
+              {(() => {
+                  const qApts = appointments
+                    .filter(a => a.appointment_date === queueDate && (!queueDoctor || a.doctor_id === queueDoctor))
+                    .sort((a, b) => (a.token_number || 0) - (b.token_number || 0));
+                    
+                  if (qApts.length === 0) return <div className="glass-card" style={{ padding: '2rem', textAlign: 'center' }}><p style={{ color: 'var(--text-secondary)' }}>No queue for the selected date and doctor.</p></div>;
+                  
+                  return (
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+                        {qApts.map(a => {
+                            const isOngoing = a.status === 'Ongoing';
+                            return (
+                            <div key={a.id} className="glass-card animate-fade-in" style={{ 
+                                padding: '1.5rem', 
+                                borderTop: isOngoing ? '4px solid var(--success-color)' : '4px solid transparent',
+                                border: isOngoing ? '2px solid var(--success-color)' : '',
+                                boxShadow: isOngoing ? '0 10px 25px rgba(16, 185, 129, 0.15)' : '',
+                                transform: isOngoing ? 'scale(1.02)' : 'scale(1)',
+                                transition: 'all 0.2s'
+                            }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                                    <h3 style={{ margin: 0, fontSize: '1.8rem', color: isOngoing ? 'var(--success-color)' : 'var(--primary-dark)' }}>
+                                        #{a.token_number || '?'}
+                                    </h3>
+                                    <span style={{ fontSize: '0.8rem', fontWeight: 600, padding: '0.3rem 0.8rem', background: STATUS_COLORS[a.status]?.bg || '#eee', color: STATUS_COLORS[a.status]?.color || '#333', borderRadius: '20px' }}>
+                                        {a.status || 'Waiting'}
+                                    </span>
+                                </div>
+                                
+                                <p style={{ margin: '0 0 0.2rem 0', fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-primary)' }}>{a.patients?.full_name}</p>
+                                <p style={{ margin: '0 0 1.5rem 0', fontSize: '0.85rem', color: 'var(--text-secondary)' }}><i className='bx bx-user-pin'></i> Dr. {a.doctors?.name}</p>
+                                
+                                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', paddingTop: '1rem', borderTop: '1px solid var(--border-color)' }}>
+                                    {a.status !== 'Completed' && a.status !== 'Cancelled' && (
+                                       <>
+                                         {a.status !== 'Ongoing' && btnSm('Call Next', 'bx-microphone', () => handleStatusChange(a.id, 'Ongoing'), '#059669', 'rgba(16,185,129,0.1)')}
+                                         {a.status !== 'Skipped' && btnSm('Skip', 'bx-skip-next', () => handleStatusChange(a.id, 'Skipped'), '#f59e0b', 'rgba(245,158,11,0.1)')}
+                                         {btnSm('Complete', 'bx-check-double', () => handleStatusChange(a.id, 'Completed'), '#0284c7', 'rgba(14,165,233,0.1)')}
+                                       </>
+                                    )}
+                                    {a.status === 'Skipped' && btnSm('Re-Queue', 'bx-undo', () => handleStatusChange(a.id, 'Waiting'), '#0f4c81', 'rgba(15,76,129,0.1)')}
+                                </div>
+                            </div>
+                        )})}
+                      </div>
+                  );
+              })()}
+            </div>
+          )}
+
           {/* ── APPOINTMENTS TAB ─────────────────────────── */}
           {activeTab === 'appointments' && (
             <div>
@@ -428,7 +506,7 @@ const AdminPortal = () => {
                               <td style={{ padding: '0.85rem 1rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>{a.doctors?.name ? `Dr. ${a.doctors.name}` : '—'}</td>
                               <td style={{ padding: '0.85rem 1rem' }}>{a.department || '—'}</td>
                               <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>{new Date(a.appointment_date).toLocaleDateString('en-IN')}</td>
-                              <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>{a.time_slot}</td>
+                              <td style={{ padding: '0.85rem 1rem', whiteSpace: 'nowrap' }}>{a.time_slot} {a.token_number ? `(Token #${a.token_number})` : ''}</td>
                               <td style={{ padding: '0.85rem 1rem' }}>
                                 <span style={{ padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.78rem', fontWeight: 600, background: sc.bg, color: sc.color, whiteSpace: 'nowrap' }}>
                                   {a.status}
@@ -436,11 +514,11 @@ const AdminPortal = () => {
                               </td>
                               <td style={{ padding: '0.85rem 1rem' }}>
                                 <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
-                                  {a.status !== 'Confirmed' && a.status !== 'Completed' && a.status !== 'Cancelled' &&
+                                  {a.status !== 'Confirmed' && a.status !== 'Completed' && a.status !== 'Cancelled' && a.status !== 'Ongoing' && a.status !== 'Waiting' &&
                                     btnSm('Confirm', 'bx-check', () => handleStatusChange(a.id, 'Confirmed'), '#059669', 'rgba(16,185,129,0.1)')}
                                   {a.status !== 'Completed' && a.status !== 'Cancelled' &&
                                     btnSm('Complete', 'bx-check-double', () => handleStatusChange(a.id, 'Completed'), '#0284c7', 'rgba(14,165,233,0.1)')}
-                                  {a.status !== 'Cancelled' &&
+                                  {a.status !== 'Cancelled' && a.status !== 'Completed' &&
                                     btnSm('Cancel', 'bx-x', () => handleStatusChange(a.id, 'Cancelled'), '#dc2626', 'rgba(239,68,68,0.07)')}
                                 </div>
                               </td>

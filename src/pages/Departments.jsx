@@ -65,6 +65,22 @@ const departmentsRecord = [
     desc: 'Ensuring patient safety and comfort during surgical procedures with advanced pain management and critical care expertise.',
     tags: ['Pain Management', 'Perioperative Care', 'Critical Care'],
     doc: 'Dr. G. Arul & Dr. S.U. Chithrapavai'
+  },
+  {
+    title: 'General Medicine',
+    bg: 'linear-gradient(135deg, rgba(8, 145, 178, 0.9), rgba(6, 182, 212, 0.9))',
+    icon: 'bx-clinic',
+    desc: 'Comprehensive primary care, diagnosing and treating a wide range of medical conditions for patients with a focus on personalized wellness.',
+    tags: ['Primary Care', 'Health Screenings', 'Chronic Disease Management'],
+    doc: 'Dr. Sowmiya'
+  },
+  {
+    title: 'Radiology',
+    bg: 'linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(124, 58, 237, 0.9))',
+    icon: 'bx-scan',
+    desc: 'Advanced diagnostic imaging services providing accurate and timely insights to guide effective medical treatment and care planning.',
+    tags: ['X-Ray', 'Ultrasound', 'Diagnostics'],
+    doc: 'Dr. Kadhirvel Subramanian'
   }
 ];
 

@@ -12,7 +12,6 @@ const Appointment = () => {
     department: '',
     doctorId: '',
     date: '',
-    timeSlot: '',
     patientName: '',
     phone: '',
     email: '',
@@ -59,22 +58,24 @@ const Appointment = () => {
       // Direct assignment since formData.doctorId comes directly from dbDoctors now
       const doctorDbId = formData.doctorId ? parseInt(formData.doctorId) : null;
 
-      // ── Duplicate booking guard ──────────────────────────────────────────
-      if (doctorDbId && formData.date && formData.timeSlot) {
-        const { data: existing, error: dupErr } = await supabase
+      // ── Queue System Logic ──────────────────────────────────────────────
+      // Find the current highest token for this doctor on this specific day
+      let new_token = 1;
+
+      if (doctorDbId && formData.date) {
+        const { data: latestApt, error: latestErr } = await supabase
           .from('appointments')
-          .select('id')
+          .select('token_number')
           .eq('doctor_id', doctorDbId)
           .eq('appointment_date', formData.date)
-          .eq('time_slot', formData.timeSlot)
-          .in('status', ['Confirmed', 'Upcoming', 'Pending', 'pending', 'upcoming', 'confirmed'])
+          .order('token_number', { ascending: false })
+          .limit(1)
           .maybeSingle();
 
-        if (dupErr) throw dupErr;
-
-        if (existing) {
-          const docName = dbDoctors.find(d => d.id === doctorDbId)?.name || 'this doctor';
-          throw new Error(`The ${formData.timeSlot} slot on ${formData.date} is already booked for ${docName}. Please choose a different time.`);
+        if (latestErr) throw latestErr;
+        
+        if (latestApt && latestApt.token_number) {
+          new_token = latestApt.token_number + 1;
         }
       }
       // ────────────────────────────────────────────────────────────────────
@@ -84,13 +85,14 @@ const Appointment = () => {
         doctor_id: doctorDbId,
         department: formData.department,
         appointment_date: formData.date,
-        time_slot: formData.timeSlot,
-        status: 'Upcoming'
+        time_slot: 'Token Queue', // Keeping for backwards DB compatibility if needed
+        token_number: new_token,
+        status: 'Waiting'
       }]);
       
       if (error) throw error;
       
-      alert('Appointment booked successfully!');
+      alert(`Appointment booked successfully! Your Live Queue Token is #${new_token}`);
       
       if (user) {
         navigate('/patient-portal');
@@ -160,7 +162,7 @@ const Appointment = () => {
               </div>
             )}
 
-            {/* Step 2: Date & Time */}
+            {/* Step 2: Date */}
             {step === 2 && (
               <div className="animate-slide-up">
                 <div className="grid-2">
@@ -175,21 +177,15 @@ const Appointment = () => {
                       min={new Date().toISOString().split('T')[0]} 
                       required 
                     />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Available Time Slots *</label>
-                    <select className="form-control" name="timeSlot" value={formData.timeSlot} onChange={handleChange} required>
-                      <option value="">-- Choose Time --</option>
-                      {['09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '04:00 PM', '05:00 PM', '06:00 PM'].map(time => (
-                        <option key={time} value={time}>{time}</option>
-                      ))}
-                    </select>
+                    <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                      <i className='bx bx-info-circle'></i> We use a live token system. You will be assigned a token based on availability for the selected day.
+                    </p>
                   </div>
                 </div>
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
                   <button type="button" className="btn btn-outline" onClick={prevStep}>Back</button>
-                  <button type="button" className="btn btn-primary" onClick={nextStep} disabled={!formData.date || !formData.timeSlot}>Continue</button>
+                  <button type="button" className="btn btn-primary" onClick={nextStep} disabled={!formData.date}>Continue</button>
                 </div>
               </div>
             )}
@@ -226,7 +222,7 @@ const Appointment = () => {
                 </div>
                 
                 <div style={{ background: 'var(--bg-color-alt)', padding: '1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem' }}>
-                   <strong>Summary:</strong> {formData.department} Appointment {formData.doctorId && `with Dr. ${dbDoctors.find(d=>d.id === parseInt(formData.doctorId))?.name}`} on {formData.date} at {formData.timeSlot}.
+                   <strong>Summary:</strong> {formData.department} Appointment {formData.doctorId && `with Dr. ${dbDoctors.find(d=>d.id === parseInt(formData.doctorId))?.name}`} on {formData.date}. You will join the live token queue for that day.
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
