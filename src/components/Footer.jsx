@@ -42,7 +42,6 @@ const Footer = () => {
               <li><Link to="/appointment">Book Appointment</Link></li>
               <li><Link to="/departments">Departments</Link></li>
               <li><Link to="/lab-reports">Download Reports</Link></li>
-              <li><Link to="/telemedicine">Online Consultation</Link></li>
             </ul>
           </div>
           
@@ -70,7 +69,7 @@ const Footer = () => {
               </li>
               <li>
                 <i className='bx bx-envelope'></i>
-                <span>info@annaihospital.com</span>
+                <span>annaihospitals.tg@gmail.com</span>
               </li>
             </ul>
           </div>

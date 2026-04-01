@@ -189,13 +189,6 @@ const Home = () => {
               <span className="service-link">Access Portal <i className='bx bx-right-arrow-alt'></i></span>
             </Link>
             
-            <Link to="/telemedicine" className="service-card glass-card">
-              <div className="service-icon"><i className='bx bx-video'></i></div>
-              <h3>Online Consultation</h3>
-              <p>Consult with doctors from the comfort of your home via video call.</p>
-              <span className="service-link">Start Call <i className='bx bx-right-arrow-alt'></i></span>
-            </Link>
-            
             <Link to="/health-tools" className="service-card glass-card">
               <div className="service-icon"><i className='bx bx-heart-circle'></i></div>
               <h3>Health Tools</h3>
@@ -373,7 +366,7 @@ const Home = () => {
               <h2 className="section-title text-left">Health Tips & Articles</h2>
               <p className="section-subtitle text-left">Stay informed with the latest health advice from our doctors.</p>
             </div>
-            <Link to="/blog" className="btn btn-outline">View All Articles</Link>
+            <Link to="/articles" className="btn btn-outline">View All Articles</Link>
           </div>
           
           <div className="grid-3 mt-2">
@@ -383,7 +376,7 @@ const Home = () => {
                  <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Heart Health</span>
                  <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>5 Daily Habits for a Stronger Heart</h4>
                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Learn how simple lifestyle changes can significantly improve your cardiovascular health.</p>
-                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
+                 <Link to="/articles" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
             <div className="blog-preview-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -392,7 +385,7 @@ const Home = () => {
                  <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Prevention</span>
                  <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>Preventing Type 2 Diabetes</h4>
                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Early detection and manageable diet changes are key to stopping diabetes before it starts.</p>
-                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
+                 <Link to="/articles" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
             <div className="blog-preview-card glass-card p-0" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -401,7 +394,7 @@ const Home = () => {
                  <span className="blog-category" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.5rem', display: 'inline-block' }}>Lifestyle</span>
                  <h4 style={{ fontSize: '1.1rem', marginBottom: '0.75rem', color: 'var(--primary-dark)' }}>Maintaining a Healthy Lifestyle</h4>
                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', flexGrow: 1 }}>Balancing work, diet, and exercise is essential for long-term health and wellness.</p>
-                 <Link to="/blog" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
+                 <Link to="/articles" className="read-more" style={{ fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '5px', color: 'var(--primary)' }}>Read More <i className='bx bx-right-arrow-alt'></i></Link>
                </div>
             </div>
           </div>

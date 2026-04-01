@@ -1,239 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Appointment = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [patientId, setPatientId] = useState(null);
-  
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
-    department: '',
-    doctorId: '',
-    date: '',
-    patientName: '',
-    phone: '',
-    email: '',
-    reason: ''
-  });
-  
-  const [loading, setLoading] = useState(false);
-  const [dbDoctors, setDbDoctors] = useState([]);
-
-  useEffect(() => {
-    checkUser();
-    fetchDoctors();
-  }, []);
-
-  const checkUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      setUser(user);
-      setFormData(prev => ({ ...prev, email: user.email }));
-      
-      const { data } = await supabase.from('patients').select('id, full_name').eq('auth_user_id', user.id).single();
-      if (data) {
-        setPatientId(data.id);
-        setFormData(prev => ({ ...prev, patientName: data.full_name }));
-      }
-    }
-  };
-
-  const fetchDoctors = async () => {
-    const { data } = await supabase.from('doctors').select('*');
-    if (data) setDbDoctors(data);
-  };
-
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      // Direct assignment since formData.doctorId comes directly from dbDoctors now
-      const doctorDbId = formData.doctorId ? parseInt(formData.doctorId) : null;
-
-      // ── Queue System Logic ──────────────────────────────────────────────
-      // Find the current highest token for this doctor on this specific day
-      let new_token = 1;
-
-      if (doctorDbId && formData.date) {
-        const { data: latestApt, error: latestErr } = await supabase
-          .from('appointments')
-          .select('token_number')
-          .eq('doctor_id', doctorDbId)
-          .eq('appointment_date', formData.date)
-          .order('token_number', { ascending: false })
-          .limit(1)
-          .maybeSingle();
-
-        if (latestErr) throw latestErr;
-        
-        if (latestApt && latestApt.token_number) {
-          new_token = latestApt.token_number + 1;
-        }
-      }
-      // ────────────────────────────────────────────────────────────────────
-
-      const { data, error } = await supabase.from('appointments').insert([{
-        patient_id: patientId, // Can be null for guests
-        doctor_id: doctorDbId,
-        department: formData.department,
-        appointment_date: formData.date,
-        time_slot: 'Token Queue', // Keeping for backwards DB compatibility if needed
-        token_number: new_token,
-        status: 'Waiting'
-      }]);
-      
-      if (error) throw error;
-      
-      alert(`Appointment booked successfully! Your Live Queue Token is #${new_token}`);
-      
-      if (user) {
-        navigate('/patient-portal');
-      } else {
-        navigate('/auth'); // Encourage guests to sign up
-      }
-    } catch (err) {
-      alert('Error booking appointment: ' + err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div style={{ paddingTop: '100px', backgroundColor: 'var(--bg-color)', minHeight: '100vh', paddingBottom: '4rem' }}>
-      <div className="hero-bg" style={{ height: '30vh', opacity: 0.5 }}></div>
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <h1 className="section-title">Book an Appointment</h1>
-        <p className="section-subtitle">Secure your consultation with our specialists in a few easy steps.</p>
+    <div style={{ paddingTop: '80px', minHeight: '100vh', background: 'var(--bg-color)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="container" style={{ maxWidth: '700px', textAlign: 'center' }}>
 
-        <div className="glass-card mt-3 animate-fade-in" style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-          
-          {/* Progress Steps */}
-           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', borderBottom: '2px solid var(--border-color)', paddingBottom: '1rem' }}>
-            <div style={{ color: step >= 1 ? 'var(--primary)' : 'var(--text-light)', fontWeight: step >= 1 ? 600 : 400 }}>1. Specialty</div>
-            <div style={{ color: step >= 2 ? 'var(--primary)' : 'var(--text-light)', fontWeight: step >= 2 ? 600 : 400 }}>2. Date & Time</div>
-            <div style={{ color: step >= 3 ? 'var(--primary)' : 'var(--text-light)', fontWeight: step >= 3 ? 600 : 400 }}>3. Details</div>
+        {/* Icon */}
+        <div style={{ width: '90px', height: '90px', background: 'rgba(249, 115, 22, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
+          <i className='bx bx-calendar-x' style={{ fontSize: '3.5rem', color: 'var(--accent)' }}></i>
+        </div>
+
+        <h1 style={{ fontSize: '2.5rem', color: 'var(--primary-dark)', fontWeight: 800, marginBottom: '1rem', letterSpacing: '-0.5px' }}>
+          Online Booking Unavailable
+        </h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.15rem', lineHeight: 1.7, marginBottom: '2.5rem', maxWidth: '550px', margin: '0 auto 2.5rem' }}>
+          We're currently not accepting online appointment bookings. Please <strong>call us</strong> or <strong>visit the hospital directly</strong> to schedule a consultation with our specialists.
+        </p>
+
+        {/* Contact Options */}
+        <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '2.5rem' }}>
+
+          {/* Phone */}
+          <a href="tel:+919944057549" style={{ textDecoration: 'none' }}>
+            <div className="glass-card" style={{ padding: '2rem', textAlign: 'center', cursor: 'pointer', transition: 'transform 0.2s, box-shadow 0.2s', borderLeft: '4px solid #10b981' }}>
+              <div style={{ width: '56px', height: '56px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+                <i className='bx bxs-phone-call' style={{ fontSize: '1.8rem', color: '#10b981' }}></i>
+              </div>
+              <h3 style={{ color: 'var(--primary-dark)', marginBottom: '0.4rem', fontSize: '1.1rem' }}>Call Us</h3>
+              <p style={{ color: '#10b981', fontWeight: 700, fontSize: '1.2rem', margin: 0 }}>+91 99440 57549</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '0.4rem' }}>Available 24/7 for emergencies</p>
+            </div>
+          </a>
+
+          {/* Visit */}
+          <div className="glass-card" style={{ padding: '2rem', textAlign: 'center', borderLeft: '4px solid #8b5cf6' }}>
+            <div style={{ width: '56px', height: '56px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem' }}>
+              <i className='bx bxs-map' style={{ fontSize: '1.8rem', color: '#8b5cf6' }}></i>
+            </div>
+            <h3 style={{ color: 'var(--primary-dark)', marginBottom: '0.4rem', fontSize: '1.1rem' }}>Visit Us</h3>
+            <p style={{ color: 'var(--text-secondary)', fontWeight: 600, fontSize: '1rem', margin: 0 }}>Near Valaraigate,</p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Tiruchengode, Tamil Nadu</p>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            
-            {/* Step 1: Specialty & Doctor */}
-            {step === 1 && (
-              <div className="animate-slide-up">
-                <div className="form-group">
-                  <label className="form-label">Select Department *</label>
-                  <select className="form-control" name="department" value={formData.department} onChange={handleChange} required>
-                    <option value="">-- Choose Department --</option>
-                    {[...new Set(dbDoctors.map(doc => doc.department))].map(dept => (
-                      <option key={dept} value={dept}>{dept}</option>
-                    ))}
-                  </select>
-                </div>
-                
-                {formData.department && (
-                  <div className="form-group fade-in mt-2">
-                    <label className="form-label">Select Doctor (Optional)</label>
-                    <div className="grid-2">
-                      {dbDoctors.filter(doc => doc.department === formData.department).map(doc => (
-                        <div 
-                          key={doc.id}
-                          className={`doctor-card glass-card ${parseInt(formData.doctorId) === doc.id ? 'selected' : ''}`}
-                          style={{ cursor: 'pointer', border: parseInt(formData.doctorId) === doc.id ? '2px solid var(--primary)' : '1px solid var(--border-color)' }}
-                          onClick={() => handleChange({ target: { name: 'doctorId', value: doc.id.toString() } })}
-                        >
-                          <h4 style={{ margin: 0, color: 'var(--primary-dark)' }}>Dr. {doc.name}</h4>
-                          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{doc.specialty}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
-                  <button type="button" className="btn btn-primary" onClick={nextStep} disabled={!formData.department}>Continue</button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 2: Date */}
-            {step === 2 && (
-              <div className="animate-slide-up">
-                <div className="grid-2">
-                  <div className="form-group">
-                    <label className="form-label">Select Date *</label>
-                    <input 
-                      type="date" 
-                      className="form-control" 
-                      name="date" 
-                      value={formData.date} 
-                      onChange={handleChange} 
-                      min={new Date().toISOString().split('T')[0]} 
-                      required 
-                    />
-                    <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                      <i className='bx bx-info-circle'></i> We use a live token system. You will be assigned a token based on availability for the selected day.
-                    </p>
-                  </div>
-                </div>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-                  <button type="button" className="btn btn-outline" onClick={prevStep}>Back</button>
-                  <button type="button" className="btn btn-primary" onClick={nextStep} disabled={!formData.date}>Continue</button>
-                </div>
-              </div>
-            )}
-
-            {/* Step 3: Patient Details */}
-            {step === 3 && (
-              <div className="animate-slide-up">
-                {!user && (
-                  <div style={{ background: 'var(--primary-light)', color: 'white', padding: '1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>Want to manage your appointments easily?</span>
-                    <button type="button" className="btn bg-white" style={{ color: 'var(--primary)' }} onClick={() => navigate('/auth')}>Login / Register</button>
-                  </div>
-                )}
-                
-                <div className="grid-2">
-                  <div className="form-group">
-                    <label className="form-label">Patient Name *</label>
-                    <input type="text" className="form-control" name="patientName" value={formData.patientName} onChange={handleChange} required />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Phone Number *</label>
-                    <input type="tel" className="form-control" name="phone" value={formData.phone} onChange={handleChange} required />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Email Address *</label>
-                  <input type="email" className="form-control" name="email" value={formData.email} onChange={handleChange} required />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">Reason for Visit (Optional)</label>
-                  <textarea className="form-control" name="reason" value={formData.reason} onChange={handleChange} rows="3" placeholder="Briefly describe your symptoms or reason..."></textarea>
-                </div>
-                
-                <div style={{ background: 'var(--bg-color-alt)', padding: '1rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem' }}>
-                   <strong>Summary:</strong> {formData.department} Appointment {formData.doctorId && `with Dr. ${dbDoctors.find(d=>d.id === parseInt(formData.doctorId))?.name}`} on {formData.date}. You will join the live token queue for that day.
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-                  <button type="button" className="btn btn-outline" onClick={prevStep}>Back</button>
-                  <button type="submit" className="btn btn-primary" disabled={loading}>{loading ? 'Confirming...' : 'Confirm Appointment'}</button>
-                </div>
-              </div>
-            )}
-
-          </form>
         </div>
+
+        {/* CTA Buttons */}
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.8rem 2rem', borderRadius: '30px' }}>
+            <i className='bx bx-envelope' style={{ marginRight: '0.5rem' }}></i> Send Us a Message
+          </Link>
+          <Link to="/" className="btn btn-outline" style={{ padding: '0.8rem 2rem', borderRadius: '30px' }}>
+            <i className='bx bx-home-alt' style={{ marginRight: '0.5rem' }}></i> Back to Home
+          </Link>
+        </div>
+
       </div>
     </div>
   );

@@ -1,21 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const Telemedicine = () => {
-  const navigate = useNavigate();
-  return (
-    <div style={{ paddingTop: '120px', minHeight: '80vh', textAlign: 'center', background: 'var(--bg-color)' }}>
-      <div className="container" style={{ maxWidth: '600px' }}>
-        <div className="glass-card" style={{ padding: '3rem' }}>
-          <i className='bx bx-video' style={{ fontSize: '5rem', color: 'var(--primary)', marginBottom: '1rem' }}></i>
-          <h1 style={{ color: 'var(--primary-dark)' }}>Telemedicine Portal</h1>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Our secure online consultation platform allows you to connect with Annai Hospital doctors from the comfort of your home.</p>
-          <button className="btn btn-primary btn-lg" onClick={() => navigate('/appointment')}>Book Online Consultation</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+
 
 export const LabReportsPage = () => {
   const navigate = useNavigate();

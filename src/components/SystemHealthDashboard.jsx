@@ -43,7 +43,6 @@ const THROUGHPUT_DATA = [
   { endpoint: '/api/patients',    rps: 76 },
   { endpoint: '/api/lab-reports', rps: 54 },
   { endpoint: '/api/doctors',     rps: 38 },
-  { endpoint: '/api/telemedicine',rps: 21 },
 ];
 
 const DEPT_LOAD = [

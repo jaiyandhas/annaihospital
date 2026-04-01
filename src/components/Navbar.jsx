@@ -55,10 +55,10 @@ const Navbar = () => {
               <li><Link to="/patient-portal"><i className='bx bx-laptop'></i> Patient Dashboard</Link></li>
               <li><Link to="/appointment"><i className='bx bx-calendar-check'></i> Book Appointment</Link></li>
               <li><Link to="/doctors"><i className='bx bx-user-pin'></i> Our Doctors</Link></li>
-              <li><Link to="/telemedicine"><i className='bx bx-video'></i> Telemedicine</Link></li>
               <li><Link to="/health-tools"><i className='bx bx-heart'></i> Health Calculators</Link></li>
+              <li><Link to="/articles"><i className='bx bx-news'></i> Medical Insights (Blog)</Link></li>
               <li><Link to="/symptom-checker"><i className='bx bx-analyse'></i> Symptom Checker</Link></li>
-              <li><Link to="/medicine-checker"><i className='bx bx-capsule'></i> Pharmacy Search</Link></li>
+
             </ul>
           </li>
         </ul>
@@ -95,10 +95,10 @@ const Navbar = () => {
               <li><Link to="/patient-portal"><i className='bx bx-laptop'></i> Patient Dashboard</Link></li>
               <li><Link to="/appointment"><i className='bx bx-calendar-check'></i> Book Appointment</Link></li>
               <li><Link to="/doctors"><i className='bx bx-user-pin'></i> Our Doctors</Link></li>
-              <li><Link to="/telemedicine"><i className='bx bx-video'></i> Telemedicine</Link></li>
               <li><Link to="/health-tools"><i className='bx bx-heart'></i> Health Calculators</Link></li>
+              <li><Link to="/articles"><i className='bx bx-news'></i> Medical Insights (Blog)</Link></li>
               <li><Link to="/symptom-checker"><i className='bx bx-analyse'></i> Symptom Checker</Link></li>
-              <li><Link to="/medicine-checker"><i className='bx bx-capsule'></i> Pharmacy Search</Link></li>
+
             </ul>
           </li>
         </ul>
