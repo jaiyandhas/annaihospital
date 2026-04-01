@@ -53,6 +53,19 @@ const Doctors = () => {
     return name.startsWith('Dr. ') ? name : `Dr. ${name}`;
   };
 
+  const getImageUrl = (doc) => {
+    if (doc.image_url) return doc.image_url;
+    if (doc.name.includes('Kadhirvel')) return '/doctors/kathirvel.jpeg';
+    if (doc.name.includes('Sowmiya')) return '/doctors/sowmiya.jpeg';
+    return null;
+  };
+
+  const getAvailability = (doc) => {
+    if (doc.name.includes('Kadhirvel') && (!doc.availability || doc.availability === 'Mon-Sat')) return 'On Call';
+    if (doc.name.includes('Sowmiya') && (!doc.availability || doc.availability === 'Mon-Sat')) return '-';
+    return doc.availability || 'Mon-Sat';
+  };
+
   return (
     <div style={{ paddingTop: '80px', minHeight: '100vh', background: 'var(--bg-color)' }}>
       <div
@@ -167,9 +180,9 @@ const Doctors = () => {
                       position: 'relative',
                     }}
                   >
-                    {doc.image_url ? (
+                    {getImageUrl(doc) ? (
                       <img
-                        src={doc.image_url}
+                        src={getImageUrl(doc)}
                         alt={doc.name}
                         style={{
                           width: '100%',
@@ -224,7 +237,7 @@ const Doctors = () => {
                         </span>
                       )}
                       <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                        <i className="bx bx-time" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> {doc.availability || 'Mon-Sat'}
+                        <i className="bx bx-time" style={{ color: 'var(--primary)', fontSize: '1.1rem' }}></i> {getAvailability(doc)}
                       </span>
                     </div>
                     
