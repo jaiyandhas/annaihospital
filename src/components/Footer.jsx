@@ -77,7 +77,10 @@ const Footer = () => {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', cursor: 'default' }} title="Staff Portal">Annai Hospital</Link>. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', cursor: 'default' }} title="Staff Portal">Annai Hospital</Link>. All rights reserved.
+            {" | "} Designed by <a href="https://jaiyandhas.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-light)', textDecoration: 'none', fontWeight: '500' }}>Jaiyandh A S</a>
+          </p>
           <div className="footer-bottom-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
